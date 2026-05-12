@@ -18,7 +18,7 @@ const sans = Jost({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_URL ?? "https://cabane135.fr";
+const SITE_URL = process.env.NEXT_PUBLIC_URL || "https://cabane135.fr";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

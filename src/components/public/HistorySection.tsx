@@ -89,8 +89,8 @@ export function HistorySection() {
             <div className="grid grid-cols-2 gap-3">
               <div className="relative aspect-[3/4] overflow-hidden border border-[var(--gold)]/20">
                 <Image
-                  src="/ile-plage-aerienne.jpg"
-                  alt="L'océan Indien — La Réunion"
+                  src="/reunion-plage.jpg"
+                  alt="La Réunion — plage et lagon"
                   fill
                   sizes="(min-width: 768px) 25vw, 50vw"
                   className="object-cover"
