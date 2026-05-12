@@ -23,16 +23,16 @@ const SITE_URL = process.env.NEXT_PUBLIC_URL ?? "https://cabane135.fr";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Huîtres Lebon — Cabane 135 · Nieul-sur-Mer",
+    default: "Cabane 135 — Huîtres au détail & dégustation · Nieul-sur-Mer",
     template: "%s · Cabane 135",
   },
   description:
-    "Cabane de dégustation d'huîtres à Nieul-sur-Mer (Charente-Maritime). Huîtres fraîches, plateaux, vente à emporter. 135 rue du Port.",
+    "Cabane 135 par Huîtres Lebon — dégustation d'huîtres à Nieul-sur-Mer (Charente-Maritime). Huîtres fraîches, plateaux, vente à emporter. 135 rue du Port.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Huîtres Lebon — Cabane 135",
+    title: "Cabane 135 — by Huîtres Lebon",
     description:
-      "Cabane de dégustation d'huîtres à Nieul-sur-Mer. De La Réunion à l'Atlantique.",
+      "Dégustation d'huîtres à Nieul-sur-Mer. Huîtres au détail, plateaux, vente à emporter.",
     url: SITE_URL,
     siteName: "Cabane 135",
     locale: "fr_FR",
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Huîtres Lebon — Cabane 135",
-    description: "Cabane de dégustation à Nieul-sur-Mer.",
+    title: "Cabane 135 — by Huîtres Lebon",
+    description: "Dégustation d'huîtres à Nieul-sur-Mer.",
     images: ["/facade-cabane135.jpg"],
   },
   robots: { index: true, follow: true },

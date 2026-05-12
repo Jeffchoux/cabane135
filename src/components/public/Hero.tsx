@@ -2,42 +2,24 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-function CountUp({ to, duration = 1500 }: { to: number; duration?: number }) {
-  const [val, setVal] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        const start = performance.now();
-        const tick = (t: number) => {
-          const elapsed = t - start;
-          const p = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          setVal(Math.round(to * eased));
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-        obs.disconnect();
-      },
-      { threshold: 0.5 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [to, duration]);
-  return <span ref={ref}>{val}</span>;
-}
-
-function StaggerText({ text, className = "", baseDelay = 0 }: { text: string; className?: string; baseDelay?: number }) {
+function StaggerText({
+  text,
+  className = "",
+  baseDelay = 0,
+  step = 0.05,
+}: {
+  text: string;
+  className?: string;
+  baseDelay?: number;
+  step?: number;
+}) {
   return (
     <span className={className}>
       {Array.from(text).map((ch, i) => (
         <span
           key={i}
-          className="letter-in"
-          style={{ animationDelay: `${baseDelay + i * 0.04}s` }}
+          className="letter-in inline-block"
+          style={{ animationDelay: `${baseDelay + i * step}s` }}
         >
           {ch === " " ? " " : ch}
         </span>
@@ -47,6 +29,14 @@ function StaggerText({ text, className = "", baseDelay = 0 }: { text: string; cl
 }
 
 export function Hero({ onReserve }: { onReserve: () => void }) {
+  const [revealTagline, setRevealTagline] = useState(false);
+  const tRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => setRevealTagline(true), 1400);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <section
       id="hero"
@@ -54,7 +44,7 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
     >
       <Image
         src="/facade-cabane135.jpg"
-        alt="Façade Cabane 135 — Huîtres au détail & dégustation"
+        alt="Cabane 135 — Huîtres au détail & dégustation"
         fill
         priority
         sizes="100vw"
@@ -64,59 +54,79 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(160deg, rgba(10,22,40,0.88) 0%, rgba(15,32,53,0.75) 60%, rgba(22,58,85,0.6) 100%)",
+            "linear-gradient(165deg, rgba(10,22,40,0.92) 0%, rgba(15,32,53,0.82) 55%, rgba(22,58,85,0.65) 100%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full animate-float-orb"
-        style={{ background: "rgba(0,184,217,0.15)", filter: "blur(140px)" }}
+        className="pointer-events-none absolute -right-40 -top-40 h-[640px] w-[640px] rounded-full animate-float-orb"
+        style={{ background: "rgba(0,184,217,0.12)", filter: "blur(160px)" }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-32 -left-32 h-[400px] w-[400px] rounded-full animate-float-orb"
-        style={{ background: "rgba(200,161,90,0.08)", filter: "blur(100px)", animationDirection: "reverse", animationDuration: "25s" }}
+        className="pointer-events-none absolute -bottom-32 -left-32 h-[420px] w-[420px] rounded-full animate-float-orb"
+        style={{
+          background: "rgba(200,161,90,0.07)",
+          filter: "blur(120px)",
+          animationDirection: "reverse",
+          animationDuration: "26s",
+        }}
       />
 
-      <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
         <p
           className="section-label animate-fade-up"
           style={{ animationDelay: "0.1s" }}
         >
-          Nieul-sur-Mer · Charente-Maritime · Depuis mai 2025
+          Nieul-sur-Mer · Charente-Maritime
         </p>
 
-        <h1 className="serif mt-8 leading-[0.95] font-light">
-          <span className="block text-[var(--pearl)]" style={{ fontSize: "clamp(3.5rem,9vw,8rem)" }}>
-            <StaggerText text="Huîtres" />
+        <h1
+          className="serif mt-8 font-light leading-none flex flex-wrap items-baseline justify-center gap-x-4 md:gap-x-6"
+          style={{ perspective: 1200 }}
+        >
+          <span
+            className="text-[var(--pearl)] tracking-[0.04em]"
+            style={{ fontSize: "clamp(3.5rem, 13vw, 11rem)" }}
+          >
+            <StaggerText text="CABANE" />
           </span>
           <span
-            className="block italic text-[var(--gold)] mt-2"
-            style={{ fontSize: "clamp(4.5rem,11vw,10rem)" }}
+            className="text-[var(--turquoise)] tracking-[0.02em]"
+            style={{ fontSize: "clamp(4rem, 14vw, 12rem)" }}
           >
-            <StaggerText text="Lebon" baseDelay={0.4} />
+            <StaggerText text="135" baseDelay={0.36} />
           </span>
         </h1>
 
-        <p
-          className="serif italic text-white/70 mt-6 mx-auto inline-block typewriter"
-          style={{ fontSize: "clamp(1.1rem,2.2vw,1.6rem)" }}
+        <div
+          ref={tRef}
+          className="mt-6 flex items-center justify-center gap-4 transition-opacity duration-700"
+          style={{ opacity: revealTagline ? 1 : 0 }}
         >
-          Cabane de dégustation · N° 135
-        </p>
-
-        <div className="mt-10 animate-fade-up" style={{ animationDelay: "1.6s" }}>
-          <div className="serif text-[var(--turquoise)]" style={{ fontSize: "clamp(4rem,9vw,8rem)", lineHeight: 1 }}>
-            <CountUp to={135} />
-          </div>
-          <p className="mt-2 text-[0.7rem] tracking-[0.3em] uppercase text-white/35">
-            rue du Port · Nieul-sur-Mer
+          <span className="h-px w-10 bg-[var(--gold)]/45" aria-hidden />
+          <p
+            className="serif italic text-[var(--gold)] tracking-[0.18em]"
+            style={{ fontSize: "clamp(0.95rem, 1.6vw, 1.25rem)" }}
+          >
+            by Huîtres Lebon
           </p>
+          <span className="h-px w-10 bg-[var(--gold)]/45" aria-hidden />
         </div>
+
+        <p
+          className="mt-8 text-white/70 tracking-[0.08em] animate-fade-up"
+          style={{
+            animationDelay: "1.6s",
+            fontSize: "clamp(0.95rem, 1.4vw, 1.1rem)",
+          }}
+        >
+          Huîtres au détail · Dégustation · Plateaux à emporter
+        </p>
 
         <div
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up"
-          style={{ animationDelay: "1.8s" }}
+          style={{ animationDelay: "1.85s" }}
         >
           <button
             onClick={onReserve}
@@ -125,10 +135,10 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
             Réserver une table
           </button>
           <a
-            href="#moments"
+            href="#histoire"
             className="h-12 inline-flex items-center justify-center glass px-8 text-[0.72rem] tracking-[0.32em] uppercase text-white/80 hover:text-white"
           >
-            Nos moments ↓
+            Découvrir ↓
           </a>
         </div>
       </div>
@@ -139,7 +149,7 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
           className="scroll-hint h-12 w-px bg-[var(--turquoise)]/50"
         />
         <span className="text-[0.55rem] tracking-[0.3em] uppercase text-white/30">
-          Découvrir
+          Scroll
         </span>
       </div>
     </section>

@@ -20,9 +20,14 @@ export function Footer() {
             height={48}
             className="h-12 w-auto rounded-sm object-cover"
           />
-          <p className="serif text-xl text-[var(--pearl)]">
-            Huîtres Lebon — <span className="italic text-[var(--gold)]">Cabane 135</span>
-          </p>
+          <div className="flex flex-col items-center gap-1">
+            <p className="serif uppercase tracking-[0.2em] text-2xl text-[var(--pearl)]">
+              Cabane <span className="text-[var(--turquoise)]">135</span>
+            </p>
+            <p className="serif italic text-sm text-[var(--gold)]/80 tracking-wide">
+              by Huîtres Lebon
+            </p>
+          </div>
 
           <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[0.65rem] tracking-[0.3em] uppercase text-white/25">
             <li>

@@ -42,8 +42,13 @@ export function Nav({ onReserve }: { onReserve: () => void }) {
             height={36}
             className="h-9 w-auto rounded-sm object-cover"
           />
-          <span className="serif text-lg text-[var(--pearl)] tracking-wide">
-            Cabane <span className="text-[var(--gold)] italic">135</span>
+          <span className="flex flex-col leading-none">
+            <span className="serif text-base md:text-lg text-[var(--pearl)] tracking-[0.18em] uppercase">
+              Cabane <span className="text-[var(--turquoise)]">135</span>
+            </span>
+            <span className="serif italic text-[0.65rem] md:text-xs text-[var(--gold)]/80 mt-0.5 tracking-wide">
+              by Huîtres Lebon
+            </span>
           </span>
         </Link>
 
