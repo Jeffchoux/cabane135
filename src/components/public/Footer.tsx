@@ -63,7 +63,7 @@ export function Footer() {
           </ul>
 
           <p className="text-[0.6rem] tracking-[0.2em] uppercase text-white/20 mt-4">
-            © 2025 Huîtres Lebon Cabane 135 — SIREN 991 494 634
+            © 2026 Huîtres Lebon Cabane 135 — SIREN 991 494 634
           </p>
         </div>
       </div>

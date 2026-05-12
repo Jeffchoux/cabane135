@@ -33,9 +33,9 @@ export function BentoSection() {
     return () => obs.disconnect();
   }, []);
 
-  const c1 = useCount(2013, vis);
+  const c1 = useCount(2012, vis);
   const c2 = useCount(135, vis);
-  const c3 = useCount(10, vis);
+  const c3 = useCount(2026, vis);
 
   return (
     <section id="degustation" ref={ref} className="relative px-6 py-28 md:py-32">
@@ -68,11 +68,11 @@ export function BentoSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <span className="absolute top-4 left-4 glass px-3 py-1 text-[0.65rem] tracking-[0.3em] uppercase text-[var(--turquoise)]">
-              Ouvert · Mai 2025
+              Ouvert · 1ᵉʳ mai 2026
             </span>
             <h3 className="absolute bottom-5 left-5 right-5 serif text-2xl md:text-3xl text-[var(--pearl)] leading-tight">
-              Depuis La Réunion,<br />
-              <span className="italic text-[var(--gold)]">sur l'Atlantique</span>
+              Entre <span className="italic text-[var(--gold)]">deux océans</span><br />
+              Atlantique · Indien
             </h3>
           </div>
 
@@ -125,17 +125,17 @@ export function BentoSection() {
           >
             <div>
               <p className="serif text-3xl md:text-4xl text-[var(--gold)]">{c1}</p>
-              <p className="text-[0.55rem] tracking-[0.3em] uppercase text-white/40 mt-1">Fondation</p>
+              <p className="text-[0.55rem] tracking-[0.3em] uppercase text-white/40 mt-1">Huîtres Lebon · La Réunion</p>
             </div>
             <div className="h-10 w-px bg-white/10" />
             <div>
               <p className="serif text-3xl md:text-4xl text-[var(--gold)]">{c2}</p>
-              <p className="text-[0.55rem] tracking-[0.3em] uppercase text-white/40 mt-1">Rue du Port</p>
+              <p className="text-[0.55rem] tracking-[0.3em] uppercase text-white/40 mt-1">rue du Port</p>
             </div>
             <div className="h-10 w-px bg-white/10" />
             <div>
-              <p className="serif text-3xl md:text-4xl text-[var(--gold)]">+{c3}</p>
-              <p className="text-[0.55rem] tracking-[0.3em] uppercase text-white/40 mt-1">d'expérience</p>
+              <p className="serif text-3xl md:text-4xl text-[var(--gold)]">{c3}</p>
+              <p className="text-[0.55rem] tracking-[0.3em] uppercase text-white/40 mt-1">Cabane 135 · Nieul-sur-Mer</p>
             </div>
           </div>
         </div>
