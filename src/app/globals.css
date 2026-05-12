@@ -1,0 +1,341 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0a1628;
+  --ocean: #0f2035;
+  --teal: #163a55;
+  --gold: #c8a15a;
+  --turquoise: #00b8d9;
+  --pearl: #f2ece0;
+  --cream: #faf7f2;
+  --glass: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --blur-sm: blur(8px);
+  --blur-md: blur(16px);
+  --blur-lg: blur(32px);
+}
+
+* {
+  border-color: var(--glass-border);
+}
+
+html,
+body {
+  background: var(--navy);
+  color: var(--pearl);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--navy);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 161, 90, 0.25);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 161, 90, 0.5);
+}
+
+:focus-visible {
+  outline: 2px solid rgba(200, 161, 90, 0.5);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.serif {
+  font-family: var(--font-serif), "Cormorant Garamond", serif;
+}
+
+.section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
+}
+
+.glass-strong {
+  background: rgba(15, 32, 53, 0.7);
+  border: 1px solid rgba(200, 161, 90, 0.2);
+  backdrop-filter: var(--blur-lg);
+  -webkit-backdrop-filter: var(--blur-lg);
+}
+
+/* ============ ANIMATIONS ============ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes letterIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) rotateX(40deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+@keyframes floatOrb {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(20px, -30px) scale(1.04);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes liquidFill {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@keyframes scrollHint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-slide-left {
+  animation: slideLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-slide-right {
+  animation: slideRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-float-orb {
+  animation: floatOrb 18s ease-in-out infinite;
+}
+
+.letter-in {
+  display: inline-block;
+  animation: letterIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-style: preserve-3d;
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--gold);
+  animation:
+    typewriter 1.6s steps(38, end) 1s both,
+    blink 0.8s step-end infinite;
+}
+
+/* CTA liquid fill */
+.btn-liquid {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.4s ease;
+}
+.btn-liquid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: -1;
+}
+.btn-liquid:hover::before {
+  transform: scaleX(1);
+}
+.btn-liquid:hover {
+  color: var(--navy);
+}
+
+/* Bento card hover line */
+.bento-card {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease;
+}
+.bento-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--gold);
+  transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.bento-card:hover::after {
+  width: 100%;
+}
+
+/* Scroll hint */
+.scroll-hint {
+  animation: scrollHint 2s ease-in-out infinite;
+}
+
+/* Wave decoration */
+.wave-divider {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='rgba(242,236,224,0.04)' d='M0,40 C320,80 720,0 1440,40 L1440,80 L0,80 Z'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+}
+
+/* Prose for legal pages */
+.legal-prose h2 {
+  font-family: var(--font-serif), serif;
+  color: var(--gold);
+  font-size: 1.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(200, 161, 90, 0.2);
+  padding-bottom: 0.5rem;
+}
+.legal-prose h3 {
+  font-family: var(--font-serif), serif;
+  color: var(--pearl);
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.legal-prose p {
+  color: rgba(242, 236, 224, 0.75);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.legal-prose strong {
+  color: var(--pearl);
+}
+.legal-prose a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legal-prose ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.legal-prose ul li {
+  color: rgba(242, 236, 224, 0.75);
+  margin-bottom: 0.4rem;
+}
+
+/* Masonry columns */
+.masonry-3 {
+  column-count: 3;
+  column-gap: 0.75rem;
+}
+@media (max-width: 1024px) {
+  .masonry-3 {
+    column-count: 2;
+  }
+}
+@media (max-width: 640px) {
+  .masonry-3 {
+    column-count: 1;
+  }
+}
+.masonry-3 > * {
+  break-inside: avoid;
+  margin-bottom: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

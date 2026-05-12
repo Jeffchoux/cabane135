@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  type      PostType @default(PHOTO)
+  caption   String?
+  mediaUrl  String?
+  mediaType String?
+  pinned    Boolean  @default(false)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Reservation {
+  id        String            @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  date      DateTime
+  time      String
+  covers    Int
+  message   String?
+  status    ReservationStatus @default(PENDING)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+model Settings {
+  id        String   @id @default("singleton")
+  phone     String   @default("+33546413682")
+  instagram String   @default("https://www.instagram.com/huitresleboncabane135/")
+  facebook  String   @default("https://www.facebook.com/people/Hu%C3%AEtres-Lebon-Cabane-135/61576413212556/")
+  tiktok    String   @default("https://www.tiktok.com/@huitresleboncabane135")
+  hours     Json     @default("{}")
+  updatedAt DateTime @updatedAt
+}
+
+enum PostType {
+  PHOTO
+  VIDEO
+  TEXT
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
