@@ -1,6 +1,15 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import { useMouseParallax } from "@/hooks/useMouseParallax";
+import { useScrollProgress } from "@/hooks/useScrollProgress";
+import { useCanRender3D } from "@/hooks/useCanRender3D";
+
+const OysterScene = dynamic(
+  () => import("@/components/3d/OysterScene").then((m) => m.OysterScene),
+  { ssr: false, loading: () => null }
+);
 
 function StaggerText({
   text,
@@ -31,6 +40,9 @@ function StaggerText({
 export function Hero({ onReserve }: { onReserve: () => void }) {
   const [revealTagline, setRevealTagline] = useState(false);
   const tRef = useRef<HTMLDivElement>(null);
+  const mouse = useMouseParallax();
+  const scrollProgress = useScrollProgress(0.7);
+  const { ready, enabled: render3D } = useCanRender3D({ minWidth: 768 });
 
   useEffect(() => {
     const t = setTimeout(() => setRevealTagline(true), 1400);
@@ -72,6 +84,14 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
           animationDuration: "26s",
         }}
       />
+
+      {ready && render3D && (
+        <OysterScene
+          scrollProgress={scrollProgress}
+          mouseX={mouse.x}
+          mouseY={mouse.y}
+        />
+      )}
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
         <p

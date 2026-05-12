@@ -1,6 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import { useMouseParallax } from "@/hooks/useMouseParallax";
+import { useCanRender3D } from "@/hooks/useCanRender3D";
+
+const PearlScene = dynamic(
+  () => import("@/components/3d/PearlScene").then((m) => m.PearlScene),
+  { ssr: false, loading: () => null }
+);
 
 const timeline = [
   {
@@ -23,6 +31,8 @@ const timeline = [
 export function HistorySection() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const mouse = useMouseParallax();
+  const { enabled: render3D } = useCanRender3D({ minWidth: 768 });
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -126,6 +136,14 @@ export function HistorySection() {
                   Cabane 135 · 135 rue du Port · Nieul-sur-Mer
                 </p>
               </div>
+              {render3D && (
+                <div
+                  aria-hidden
+                  className="absolute -top-10 -right-10 h-32 w-32 md:h-40 md:w-40 pointer-events-none"
+                >
+                  <PearlScene mouseX={mouse.x} mouseY={mouse.y} />
+                </div>
+              )}
             </div>
 
             <div className="mt-6 flex items-center gap-4 text-[0.6rem] tracking-[0.35em] uppercase text-white/40">

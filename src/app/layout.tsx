@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import Script from "next/script";
+import { LenisProvider } from "@/components/3d/LenisProvider";
 import "./globals.css";
 
 const serif = Cormorant_Garamond({
@@ -54,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${serif.variable} ${sans.variable}`}>
       <body>
-        {children}
+        <LenisProvider>{children}</LenisProvider>
         {ga && (
           <>
             <Script
