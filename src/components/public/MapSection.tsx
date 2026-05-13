@@ -28,8 +28,7 @@ export function MapSection() {
 
         <div className="grid gap-px md:gap-0 md:grid-cols-12 bg-[var(--gold)]/15">
           <div
-            className="relative md:col-span-8 overflow-hidden"
-            style={{ minHeight: 460 }}
+            className="relative md:col-span-8 overflow-hidden h-[420px] md:h-[520px]"
           >
             <CabaneMapClient />
             <a

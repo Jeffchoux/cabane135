@@ -30,24 +30,22 @@ export function CabaneMap() {
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false, visualizePitch: false }), "top-right");
 
     map.on("style.load", () => {
-      try {
-        map.setPaintProperty("water", "fill-color", "#0a1628");
-        map.setPaintProperty("background", "background-color", "#0f2035");
-        if (map.getLayer("land")) {
-          map.setPaintProperty("land", "background-color", "#13263f");
+      const safeSet = (id: string, prop: string, value: string) => {
+        try {
+          if (map.getLayer(id)) {
+            // @ts-expect-error - dynamic property name
+            map.setPaintProperty(id, prop, value);
+          }
+        } catch {
+          /* ignore */
         }
-        if (map.getLayer("road-primary")) {
-          map.setPaintProperty("road-primary", "line-color", "rgba(242,236,224,0.45)");
-        }
-        if (map.getLayer("road-secondary-tertiary")) {
-          map.setPaintProperty("road-secondary-tertiary", "line-color", "rgba(242,236,224,0.3)");
-        }
-        if (map.getLayer("road-street")) {
-          map.setPaintProperty("road-street", "line-color", "rgba(242,236,224,0.18)");
-        }
-      } catch {
-        // Layer names depend on style; silently ignore missing ones
-      }
+      };
+      safeSet("water", "fill-color", "#0a1628");
+      safeSet("background", "background-color", "#0f2035");
+      safeSet("land", "background-color", "#13263f");
+      safeSet("road-primary", "line-color", "rgba(242,236,224,0.45)");
+      safeSet("road-secondary-tertiary", "line-color", "rgba(242,236,224,0.3)");
+      safeSet("road-street", "line-color", "rgba(242,236,224,0.18)");
     });
 
     const el = document.createElement("div");
