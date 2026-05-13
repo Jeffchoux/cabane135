@@ -56,8 +56,8 @@ function OysterShell({ scrollProgress, mouseX, mouseY }: Props) {
     top.rotation.x = -openAngle;
     top.position.y = Math.sin(openAngle) * 0.32;
 
-    g.position.z = -scrollProgress * 2;
-    g.position.y = -1.6 + scrollProgress * 0.4;
+    g.position.z = -scrollProgress * 2.4;
+    g.position.y = 0.15 - scrollProgress * 0.8;
 
     g.rotation.y += 0.0025;
 
@@ -68,7 +68,7 @@ function OysterShell({ scrollProgress, mouseX, mouseY }: Props) {
   });
 
   return (
-    <group ref={groupRef} scale={0.55} position={[0, -1.6, 0]}>
+    <group ref={groupRef} scale={0.95} position={[0, 0.15, 0]} rotation={[-0.35, 0, 0.18]}>
       <mesh geometry={bottomGeometry} castShadow receiveShadow>
         <MeshDistortMaterial
           color="#c8a97a"
@@ -153,11 +153,11 @@ function Particles({ count = 180 }: { count?: number }) {
 function SceneLights() {
   return (
     <>
-      <ambientLight intensity={0.35} color="#0a1628" />
-      <pointLight position={[3, 3, 3]} intensity={3} color="#c8a15a" />
-      <pointLight position={[-3, -2, 2]} intensity={2.2} color="#00b8d9" />
-      <pointLight position={[0, -3, -1]} intensity={1.2} color="#163a55" />
-      <directionalLight position={[0, 5, 5]} intensity={0.6} color="#f2ece0" />
+      <ambientLight intensity={0.45} color="#0f2035" />
+      <pointLight position={[2.5, 2.5, 2.5]} intensity={2.2} color="#c8a15a" />
+      <pointLight position={[-2.5, -1.5, 1.8]} intensity={1.4} color="#00b8d9" />
+      <pointLight position={[0, -2.5, -0.5]} intensity={0.8} color="#163a55" />
+      <directionalLight position={[1, 4, 4]} intensity={0.45} color="#f2ece0" />
     </>
   );
 }
@@ -174,7 +174,7 @@ export function OysterScene({ scrollProgress, mouseX, mouseY }: Props) {
       }}
     >
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 40 }}
+        camera={{ position: [0, 0, 4.5], fov: 42 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 1.5]}
         frameloop="always"
