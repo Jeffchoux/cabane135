@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bodoni_Moda, Jost } from "next/font/google";
 import Script from "next/script";
 import { LenisProvider } from "@/components/3d/LenisProvider";
+import { StructuredData } from "@/components/seo/StructuredData";
 import "./globals.css";
 
 const serif = Bodoni_Moda({
@@ -28,32 +29,74 @@ export const metadata: Metadata = {
     template: "%s · Cabane 135",
   },
   description:
-    "Cabane 135 par Huîtres Lebon — dégustation d'huîtres à Nieul-sur-Mer (Charente-Maritime). Huîtres fraîches, plateaux, vente à emporter. 135 rue du Port.",
+    "Cabane 135 par Huîtres Lebon — dégustation d'huîtres à Nieul-sur-Mer (Charente-Maritime). Huîtres fraîches, plateaux, vente à emporter. Ouverte depuis le 1ᵉʳ mai 2026.",
+  applicationName: "Cabane 135",
+  authors: [{ name: "Nicolas Lebon" }],
+  creator: "Huîtres Lebon Cabane 135",
+  publisher: "Huîtres Lebon Cabane 135",
+  keywords: [
+    "huîtres Nieul-sur-Mer",
+    "dégustation huîtres La Rochelle",
+    "Cabane à huîtres Charente-Maritime",
+    "ostréiculteur Lauzières",
+    "Huîtres Lebon",
+    "plateaux fruits de mer",
+    "vente à emporter huîtres",
+    "restaurant Nieul-sur-Mer",
+    "réservation cabane huîtres",
+  ],
   alternates: { canonical: "/" },
+  category: "Restaurant",
+  formatDetection: { telephone: true, email: true, address: true },
   openGraph: {
-    title: "Cabane 135 — by Huîtres Lebon",
+    title: "Cabane 135 — Huîtres au détail & dégustation",
     description:
-      "Dégustation d'huîtres à Nieul-sur-Mer. Huîtres au détail, plateaux, vente à emporter.",
+      "Dégustation d'huîtres par Huîtres Lebon, à Nieul-sur-Mer (Charente-Maritime). 135 rue du Port — ouverte depuis le 1ᵉʳ mai 2026.",
     url: SITE_URL,
     siteName: "Cabane 135",
     locale: "fr_FR",
     type: "website",
-    images: [{ url: "/facade-cabane135.jpg", width: 1200, height: 630, alt: "Cabane 135" }],
+    // L'image OG est générée dynamiquement par src/app/opengraph-image.tsx (1200x630)
   },
   twitter: {
     card: "summary_large_image",
     title: "Cabane 135 — by Huîtres Lebon",
-    description: "Dégustation d'huîtres à Nieul-sur-Mer.",
-    images: ["/facade-cabane135.jpg"],
+    description:
+      "Dégustation d'huîtres à Nieul-sur-Mer. 135 rue du Port.",
   },
-  robots: { index: true, follow: true },
-  icons: { icon: "/facade-cabane135.jpg" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "/facade-cabane135.jpg", sizes: "any" },
+    ],
+    apple: "/facade-cabane135.jpg",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a1628",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const ga = process.env.NEXT_PUBLIC_GA_ID;
   return (
     <html lang="fr" className={`${serif.variable} ${sans.variable}`}>
+      <head>
+        <StructuredData />
+      </head>
       <body>
         <LenisProvider>{children}</LenisProvider>
         {ga && (
