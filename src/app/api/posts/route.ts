@@ -3,11 +3,41 @@ import { z } from "zod";
 import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
 
+// Whitelist domaines autorisés pour mediaUrl (storage Blob + legacy media.cabane135.fr)
+const ALLOWED_MEDIA_HOSTS = [
+  /^https:\/\/[a-z0-9-]+\.public\.blob\.vercel-storage\.com\//,
+  /^https:\/\/media\.cabane135\.fr\//,
+];
+
+const ALLOWED_MEDIA_TYPES = new Set([
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+  "image/avif",
+  "video/mp4",
+  "video/quicktime",
+  "video/webm",
+]);
+
 const createSchema = z.object({
   type: z.enum(["PHOTO", "VIDEO", "TEXT"]),
   caption: z.string().max(500).nullable().optional(),
-  mediaUrl: z.string().url().nullable().optional(),
-  mediaType: z.string().max(120).nullable().optional(),
+  mediaUrl: z
+    .string()
+    .url()
+    .refine(
+      (u) => ALLOWED_MEDIA_HOSTS.some((re) => re.test(u)),
+      "Domaine media non autorisé"
+    )
+    .nullable()
+    .optional(),
+  mediaType: z
+    .string()
+    .max(120)
+    .refine((t) => ALLOWED_MEDIA_TYPES.has(t), "Type media non autorisé")
+    .nullable()
+    .optional(),
   pinned: z.boolean().optional(),
 });
 

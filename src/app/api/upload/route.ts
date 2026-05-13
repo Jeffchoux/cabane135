@@ -30,10 +30,11 @@ export async function POST(req: Request) {
       onBeforeGenerateToken: async () => ({
         allowedContentTypes: ALLOWED,
         maximumSizeInBytes: MAX_BYTES,
-        addRandomSuffix: false,
+        addRandomSuffix: true,
       }),
       onUploadCompleted: async ({ blob }) => {
-        console.log("[blob uploaded]", blob.pathname, blob.url);
+        // Log minimal sans URL pour éviter de pré-divulguer le chemin
+        console.log("[blob uploaded]", blob.pathname);
       },
     });
     return NextResponse.json(jsonResponse);

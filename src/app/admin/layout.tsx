@@ -2,7 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { signOut } from "@/lib/auth";
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+// L'authentification est gérée par src/middleware.ts qui bloque l'accès à /admin/*
+// si la session est absente (sauf /admin/login). Pas besoin de re-vérifier ici.
+
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="min-h-screen md:flex bg-[var(--navy)]">
       <aside className="hidden md:flex flex-col w-60 shrink-0 border-r border-[var(--gold)]/10 bg-[var(--ocean)] p-6">
