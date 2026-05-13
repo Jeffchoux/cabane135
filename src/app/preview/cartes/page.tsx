@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CabaneMapClient } from "@/components/public/CabaneMapClient";
 import { MapIllustrated } from "@/components/public/maps/MapIllustrated";
 import { MapGoogleStyled } from "@/components/public/maps/MapGoogleStyled";
+import { MapGoogleSatellite } from "@/components/public/maps/MapGoogleSatellite";
 import { MapPhoto } from "@/components/public/maps/MapPhoto";
 
 export const metadata = {
@@ -31,6 +32,11 @@ const variants = [
     title: "Photo immersive",
     body: "Pas de carte au sens strict : grande photo de la cabane + adresse en signature typographique. Brand-first, ultra simple.",
   },
+  {
+    key: "E",
+    title: "Google Maps satellite hybride",
+    body: "Vraie photo satellite Google avec labels de rues, dézoomée (zoom 14) pour montrer le port, l'estuaire, La Rochelle au loin. Couleurs naturelles, repérage évident pour les visiteurs.",
+  },
 ];
 
 export default function PreviewCartesPage() {
@@ -49,7 +55,7 @@ export default function PreviewCartesPage() {
             </span>
           </h1>
           <p className="mt-6 text-white/55 max-w-2xl leading-relaxed">
-            Voici les quatre options de cartographie pour la section{" "}
+            Voici les cinq options de cartographie pour la section{" "}
             <em className="not-italic text-[var(--pearl)]">Nous trouver</em>.
             L'option <strong className="text-[var(--gold)]">A · Mapbox</strong>{" "}
             est actuellement en production. Dis-moi laquelle tu préfères et je
@@ -97,6 +103,7 @@ export default function PreviewCartesPage() {
                 {i === 1 && <MapIllustrated />}
                 {i === 2 && <MapGoogleStyled />}
                 {i === 3 && <MapPhoto />}
+                {i === 4 && <MapGoogleSatellite />}
               </div>
             </section>
           ))}
