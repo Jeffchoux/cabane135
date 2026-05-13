@@ -107,7 +107,7 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
           <span
             className="block text-[var(--turquoise)] whitespace-nowrap"
             style={{
-              fontSize: "clamp(3.5rem, 13vw, 9.5rem)",
+              fontSize: "clamp(4.75rem, 15vw, 10rem)",
               marginTop: "-0.08em",
             }}
           >
