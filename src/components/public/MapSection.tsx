@@ -1,9 +1,4 @@
-import dynamic from "next/dynamic";
-
-const CabaneMap = dynamic(
-  () => import("./CabaneMap").then((m) => m.CabaneMap),
-  { ssr: false, loading: () => null }
-);
+import { CabaneMapClient } from "./CabaneMapClient";
 
 export function MapSection() {
   const directions =
@@ -36,7 +31,7 @@ export function MapSection() {
             className="relative md:col-span-8 overflow-hidden"
             style={{ minHeight: 460 }}
           >
-            <CabaneMap />
+            <CabaneMapClient />
             <a
               href={directions}
               target="_blank"
