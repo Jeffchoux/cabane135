@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import { upload } from "@vercel/blob/client";
 import { Textarea } from "@/components/ui/textarea";
 
 export function PostPublisher({ onPublished }: { onPublished: () => void }) {
@@ -38,32 +39,14 @@ export function PostPublisher({ onPublished }: { onPublished: () => void }) {
         const ext = file.name.split(".").pop() ?? "bin";
         const key = `posts/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
-        const presign = await fetch("/api/upload", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ key, contentType: file.type, size: file.size }),
+        const newBlob = await upload(key, file, {
+          access: "public",
+          handleUploadUrl: "/api/upload",
+          contentType: file.type,
+          onUploadProgress: ({ percentage }) =>
+            setProgress(Math.round(percentage)),
         });
-        if (!presign.ok) {
-          const j = await presign.json().catch(() => ({}));
-          throw new Error(j.error ?? "Échec presign");
-        }
-        const { uploadUrl, publicUrl } = (await presign.json()) as {
-          uploadUrl: string;
-          publicUrl: string;
-        };
-
-        await new Promise<void>((resolve, reject) => {
-          const xhr = new XMLHttpRequest();
-          xhr.open("PUT", uploadUrl);
-          xhr.setRequestHeader("Content-Type", file.type);
-          xhr.upload.onprogress = (ev) => {
-            if (ev.lengthComputable) setProgress(Math.round((ev.loaded / ev.total) * 100));
-          };
-          xhr.onload = () => (xhr.status >= 200 && xhr.status < 300 ? resolve() : reject(new Error("Upload R2 échoué")));
-          xhr.onerror = () => reject(new Error("Réseau upload"));
-          xhr.send(file);
-        });
-        mediaUrl = publicUrl;
+        mediaUrl = newBlob.url;
       }
 
       setStatus("publishing");
