@@ -1,4 +1,4 @@
-import { CabaneMapClient } from "./CabaneMapClient";
+import { MapGoogleSatellite } from "./maps/MapGoogleSatellite";
 
 export function MapSection() {
   const directions =
@@ -30,7 +30,7 @@ export function MapSection() {
           <div
             className="relative md:col-span-8 overflow-hidden h-[420px] md:h-[520px]"
           >
-            <CabaneMapClient />
+            <MapGoogleSatellite />
             <a
               href={directions}
               target="_blank"

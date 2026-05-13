@@ -14,8 +14,7 @@ const variants = [
   {
     key: "A",
     title: "Mapbox éditorial",
-    body: "Carte navette interactive, pin « 135 » turquoise. Style sombre custom, routes et labels filaires. C'est ce qui est sur la prod actuellement.",
-    selected: true,
+    body: "Carte navette interactive, pin « 135 » turquoise. Style sombre custom, routes et labels filaires.",
   },
   {
     key: "B",
@@ -36,6 +35,7 @@ const variants = [
     key: "E",
     title: "Google Maps satellite hybride",
     body: "Vraie photo satellite Google avec labels de rues, dézoomée (zoom 14) pour montrer le port, l'estuaire, La Rochelle au loin. Couleurs naturelles, repérage évident pour les visiteurs.",
+    selected: true,
   },
 ];
 
