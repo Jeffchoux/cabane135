@@ -1,15 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-import { useMouseParallax } from "@/hooks/useMouseParallax";
-import { useScrollProgress } from "@/hooks/useScrollProgress";
-import { useCanRender3D } from "@/hooks/useCanRender3D";
-
-const OysterScene = dynamic(
-  () => import("@/components/3d/OysterScene").then((m) => m.OysterScene),
-  { ssr: false, loading: () => null }
-);
 
 function StaggerText({
   text,
@@ -38,9 +29,6 @@ function StaggerText({
 export function Hero({ onReserve }: { onReserve: () => void }) {
   const [revealTail, setRevealTail] = useState(false);
   const tailRef = useRef<HTMLDivElement>(null);
-  const mouse = useMouseParallax();
-  const scrollProgress = useScrollProgress(0.7);
-  const { ready, enabled: render3D } = useCanRender3D({ minWidth: 768 });
 
   useEffect(() => {
     const t = setTimeout(() => setRevealTail(true), 1500);
@@ -77,16 +65,6 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
             "linear-gradient(to top, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.35) 50%, transparent 100%)",
         }}
       />
-
-      {ready && render3D && (
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden md:block md:w-[55%] lg:w-[50%]">
-          <OysterScene
-            scrollProgress={scrollProgress}
-            mouseX={mouse.x}
-            mouseY={mouse.y}
-          />
-        </div>
-      )}
 
       <header className="absolute top-20 md:top-24 right-6 md:right-12 z-10 text-right">
         <p className="section-label flex items-center justify-end gap-2.5">
