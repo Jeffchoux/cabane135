@@ -47,7 +47,10 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
         priority
         sizes="100vw"
         className="object-cover"
-        style={{ objectPosition: "center 35%" }}
+        style={{
+          objectPosition: "center 35%",
+          filter: "brightness(1.12) contrast(0.96) saturate(1.05)",
+        }}
       />
 
       <div
@@ -55,7 +58,7 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(110deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.62) 42%, rgba(10,22,40,0.18) 78%, rgba(10,22,40,0.08) 100%)",
+            "linear-gradient(110deg, rgba(10,22,40,0.78) 0%, rgba(10,22,40,0.40) 42%, rgba(10,22,40,0.08) 78%, rgba(10,22,40,0.02) 100%)",
         }}
       />
       <div
@@ -63,7 +66,7 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
         className="absolute inset-x-0 bottom-0 h-3/4"
         style={{
           background:
-            "linear-gradient(to top, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.55) 35%, rgba(10,22,40,0.15) 70%, transparent 100%)",
+            "linear-gradient(to top, rgba(10,22,40,0.75) 0%, rgba(10,22,40,0.35) 35%, rgba(10,22,40,0.08) 70%, transparent 100%)",
         }}
       />
       <div
@@ -71,7 +74,7 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
         className="absolute inset-x-0 top-0 h-32"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(10,22,40,0.7) 0%, transparent 100%)",
+            "linear-gradient(to bottom, rgba(10,22,40,0.55) 0%, transparent 100%)",
         }}
       />
 
@@ -82,7 +85,7 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
             className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--turquoise)]"
             style={{ animation: "scrollHint 2.4s ease-in-out infinite" }}
           />
-          <span>Ouvre&nbsp;le&nbsp;1ᵉʳ&nbsp;mai&nbsp;2026</span>
+          <span>Ouvert&nbsp;·&nbsp;depuis&nbsp;le&nbsp;1ᵉʳ&nbsp;mai&nbsp;2026</span>
         </p>
       </header>
 

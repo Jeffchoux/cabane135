@@ -38,7 +38,7 @@ export function Footer() {
             </p>
             <p className="mt-6 text-white/50 text-[0.9rem] leading-relaxed max-w-sm">
               Cabane de dégustation au 135 rue du Port, Nieul-sur-Mer.
-              Ouvre le 1ᵉʳ mai 2026.
+              Ouverte depuis le 1ᵉʳ mai 2026.
             </p>
           </div>
 

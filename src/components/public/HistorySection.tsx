@@ -96,7 +96,7 @@ export function HistorySection() {
                 un bar à huîtres ouvert à Saint-Denis.
               </p>
               <p>
-                Le 1ᵉʳ mai 2026, ils inaugurent{" "}
+                Le 1ᵉʳ mai 2026, ils ont inauguré{" "}
                 <em className="not-italic text-[var(--pearl)]">Cabane&nbsp;135</em> à
                 Nieul-sur-Mer, à quelques minutes de Lauzières. Une cabane de
                 dégustation au bord des marais — là où tout avait commencé.

@@ -42,11 +42,11 @@ export function MomentsFeed({ posts }: { posts: Post[] }) {
           <Heading />
           <div className="border-y border-[var(--gold)]/15 py-16 text-center">
             <p className="serif italic text-[var(--pearl)]/70 text-lg max-w-lg mx-auto leading-snug">
-              Les premiers moments arriveront avec la cabane,{" "}
-              <span className="text-[var(--gold)]">au printemps</span>.
+              Les premiers moments de la cabane{" "}
+              <span className="text-[var(--gold)]">arrivent bientôt</span>.
             </p>
             <p className="mt-4 text-white/45 text-sm">
-              D'ici là, le récit continue sur{" "}
+              En attendant, suivez les arrivages du jour sur{" "}
               <a
                 href="https://www.instagram.com/huitresleboncabane135/"
                 target="_blank"
