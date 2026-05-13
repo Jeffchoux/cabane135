@@ -31,7 +31,7 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
   const tailRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const t = setTimeout(() => setRevealTail(true), 1500);
+    const t = setTimeout(() => setRevealTail(true), 350);
     return () => clearTimeout(t);
   }, []);
 
@@ -121,8 +121,11 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
         <div className="max-w-[36rem]">
           <div
             ref={tailRef}
-            className="mt-7 md:mt-9 transition-opacity duration-1000"
-            style={{ opacity: revealTail ? 1 : 0 }}
+            className="mt-7 md:mt-9 transition-opacity duration-500"
+            style={{
+              opacity: revealTail ? 1 : 0,
+              transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
+            }}
           >
             <p
               className="serif italic text-[var(--gold)] leading-snug max-w-md"
