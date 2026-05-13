@@ -51,12 +51,8 @@ export function CabaneMap() {
     const el = document.createElement("div");
     el.className = "cabane-pin";
     el.setAttribute("aria-label", "Cabane 135");
-    el.innerHTML = `
-      <span class="cabane-pin-label">135</span>
-      <span class="cabane-pin-stem"></span>
-      <span class="cabane-pin-dot"></span>
-    `;
-    new mapboxgl.Marker({ element: el, anchor: "bottom" })
+    el.textContent = "135";
+    new mapboxgl.Marker({ element: el, anchor: "center" })
       .setLngLat([CABANE_135.lng, CABANE_135.lat])
       .addTo(map);
 

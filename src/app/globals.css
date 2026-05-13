@@ -329,39 +329,20 @@ body {
   margin-bottom: 0.75rem;
 }
 
-/* Mapbox custom pin */
+/* Mapbox custom pin — simple "135" en turquoise serif */
 .cabane-pin {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  filter: drop-shadow(0 4px 12px rgba(10, 22, 40, 0.4));
-}
-.cabane-pin-label {
-  background: var(--gold);
-  color: var(--navy);
-  padding: 4px 10px;
   font-family: var(--font-serif), "Bodoni Moda", "Didot", serif;
+  font-size: 30px;
   font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0.06em;
+  color: var(--turquoise);
+  letter-spacing: 0.01em;
   line-height: 1;
-  border-radius: 1px;
-}
-.cabane-pin-stem {
-  width: 1px;
-  height: 14px;
-  background: var(--gold);
-  display: block;
-}
-.cabane-pin-dot {
-  width: 10px;
-  height: 10px;
-  background: var(--gold);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 4px rgba(200, 161, 90, 0.22),
-    0 0 0 10px rgba(200, 161, 90, 0.06);
+  cursor: pointer;
+  user-select: none;
+  text-shadow:
+    0 1px 0 rgba(10, 22, 40, 0.8),
+    0 0 12px rgba(10, 22, 40, 0.6),
+    0 0 24px rgba(10, 22, 40, 0.4);
 }
 
 /* Mapbox compact attribution and ctrl restyling */
