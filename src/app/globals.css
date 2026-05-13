@@ -329,56 +329,6 @@ body {
   margin-bottom: 0.75rem;
 }
 
-/* Mapbox custom pin — simple "135" en turquoise serif */
-.cabane-pin {
-  font-family: var(--font-serif), "Bodoni Moda", "Didot", serif;
-  font-size: 30px;
-  font-weight: 500;
-  color: var(--turquoise);
-  letter-spacing: 0.01em;
-  line-height: 1;
-  cursor: pointer;
-  user-select: none;
-  text-shadow:
-    0 1px 0 rgba(10, 22, 40, 0.8),
-    0 0 12px rgba(10, 22, 40, 0.6),
-    0 0 24px rgba(10, 22, 40, 0.4);
-}
-
-/* Mapbox compact attribution and ctrl restyling */
-.mapboxgl-ctrl-bottom-right,
-.mapboxgl-ctrl-bottom-left {
-  bottom: 8px !important;
-}
-.mapboxgl-ctrl-attrib.mapboxgl-compact {
-  background: rgba(10, 22, 40, 0.65) !important;
-  color: rgba(242, 236, 224, 0.7) !important;
-  font-size: 10px !important;
-}
-.mapboxgl-ctrl-attrib.mapboxgl-compact a {
-  color: rgba(242, 236, 224, 0.85) !important;
-}
-.mapboxgl-ctrl-attrib-button {
-  background-color: rgba(10, 22, 40, 0.6) !important;
-}
-.mapboxgl-ctrl-group {
-  background: rgba(10, 22, 40, 0.75) !important;
-  border: 1px solid rgba(200, 161, 90, 0.2) !important;
-  border-radius: 1px !important;
-}
-.mapboxgl-ctrl-group button {
-  background-color: transparent !important;
-}
-.mapboxgl-ctrl-group button + button {
-  border-top: 1px solid rgba(200, 161, 90, 0.15) !important;
-}
-.mapboxgl-ctrl-group button .mapboxgl-ctrl-icon {
-  filter: invert(0.85) sepia(0.4) saturate(2) hue-rotate(10deg) brightness(0.95);
-}
-.mapboxgl-ctrl-logo {
-  opacity: 0.5;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -14,7 +14,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "media.cabane135.fr" },
       { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
-      { protocol: "https", hostname: "*.r2.cloudflarestorage.com" },
     ],
   },
   async headers() {
