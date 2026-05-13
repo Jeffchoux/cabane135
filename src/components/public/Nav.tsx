@@ -37,7 +37,6 @@ export function Nav({ onReserve }: { onReserve: () => void }) {
         <Link
           href="/"
           className="group flex items-baseline gap-3"
-          aria-label="Accueil Cabane 135"
         >
           <span className="serif text-[var(--pearl)] tracking-[0.12em] text-base md:text-lg leading-none">
             Cabane

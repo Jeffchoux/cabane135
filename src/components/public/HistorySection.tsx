@@ -150,7 +150,7 @@ export function HistorySection() {
                   <figcaption className="mt-3 flex items-baseline gap-4 text-[0.62rem] tracking-[0.32em] uppercase">
                     <span className="text-[var(--gold)]">{s.caption}</span>
                     <span className="flex-1 h-px bg-[var(--gold)]/15" />
-                    <span className="text-white/40">{s.aside}</span>
+                    <span className="text-white/60">{s.aside}</span>
                   </figcaption>
                 </figure>
               ))}
@@ -158,11 +158,11 @@ export function HistorySection() {
           </div>
         </div>
 
-        <div className="mt-20 md:mt-28 flex items-center gap-6 text-[0.62rem] tracking-[0.4em] uppercase text-white/35">
+        <div className="mt-20 md:mt-28 flex items-center gap-6 text-[0.62rem] tracking-[0.4em] uppercase text-white/60">
           <span>Atlantique</span>
-          <span className="flex-1 h-px bg-white/12" />
+          <span className="flex-1 h-px bg-white/15" />
           <span>Océan Indien</span>
-          <span className="flex-1 h-px bg-white/12" />
+          <span className="flex-1 h-px bg-white/15" />
           <span>Atlantique</span>
         </div>
       </div>

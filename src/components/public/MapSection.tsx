@@ -59,8 +59,8 @@ export function MapSection() {
               >
                 135 rue du Port
               </p>
-              <p className="text-white/65 mt-2">17137 Nieul-sur-Mer</p>
-              <p className="text-white/40 text-sm">Charente-Maritime</p>
+              <p className="text-white/70 mt-2">17137 Nieul-sur-Mer</p>
+              <p className="text-white/55 text-sm">Charente-Maritime</p>
             </div>
 
             <div className="space-y-3">
@@ -88,14 +88,14 @@ export function MapSection() {
               <p className="text-[0.62rem] tracking-[0.32em] uppercase text-[var(--gold)] mb-3">
                 Horaires
               </p>
-              <p className="text-sm text-white/65 leading-relaxed">
+              <p className="text-sm text-white/70 leading-relaxed">
                 Le calendrier d'ouverture se précise au fil des semaines.
                 Suivez{" "}
                 <a
                   href="https://www.instagram.com/huitresleboncabane135/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[var(--gold)] hover:underline underline-offset-4"
+                  className="text-[var(--gold)] underline underline-offset-4 decoration-[var(--gold)]/40 hover:decoration-[var(--gold)]"
                 >
                   Instagram
                 </a>{" "}

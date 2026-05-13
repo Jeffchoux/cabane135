@@ -91,11 +91,11 @@ export function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/8 flex flex-col-reverse md:flex-row md:items-end md:justify-between gap-4">
-          <p className="text-[0.6rem] tracking-[0.32em] uppercase text-white/30">
+          <p className="text-[0.6rem] tracking-[0.32em] uppercase text-white/55">
             © 2026 Huîtres Lebon Cabane 135{" "}
             <span className="text-white/15 mx-1">·</span> SIREN 991 494 634
           </p>
-          <p className="text-[0.6rem] tracking-[0.32em] uppercase text-white/30">
+          <p className="text-[0.6rem] tracking-[0.32em] uppercase text-white/55">
             Nieul-sur-Mer{" "}
             <span className="text-white/15 mx-1">·</span> Charente-Maritime
           </p>
