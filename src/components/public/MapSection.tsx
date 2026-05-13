@@ -1,8 +1,13 @@
+import dynamic from "next/dynamic";
+
+const CabaneMap = dynamic(
+  () => import("./CabaneMap").then((m) => m.CabaneMap),
+  { ssr: false, loading: () => null }
+);
+
 export function MapSection() {
   const directions =
     "https://www.google.com/maps/dir/?api=1&destination=46.20415,-1.202009";
-  const embed =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101!2d-1.2020846!3d46.20422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4806abbb0675ed91%3A0xdb815905e96cb6a0!2sHUITRES%20LEBON%20CABANE%20135!5e0!3m2!1sfr!2sfr!4v1";
 
   return (
     <section
@@ -31,27 +36,12 @@ export function MapSection() {
             className="relative md:col-span-8 overflow-hidden"
             style={{ minHeight: 460 }}
           >
-            <iframe
-              src={embed}
-              title="Carte Cabane 135"
-              width="100%"
-              height="100%"
-              style={{
-                border: 0,
-                position: "absolute",
-                inset: 0,
-                filter:
-                  "grayscale(0.85) hue-rotate(180deg) saturate(0.6) brightness(0.82)",
-              }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
+            <CabaneMap />
             <a
               href={directions}
               target="_blank"
               rel="noopener noreferrer"
-              className="group absolute bottom-5 left-5 inline-flex items-center gap-3 text-[var(--gold)] text-[0.68rem] tracking-[0.32em] uppercase backdrop-blur-md bg-[var(--navy)]/65 border border-[var(--gold)]/40 px-5 py-3 transition-colors duration-300 hover:bg-[var(--gold)] hover:text-[var(--navy)]"
+              className="group absolute bottom-5 left-5 inline-flex items-center gap-3 text-[var(--gold)] text-[0.68rem] tracking-[0.32em] uppercase backdrop-blur-md bg-[var(--navy)]/75 border border-[var(--gold)]/40 px-5 py-3 transition-colors duration-300 hover:bg-[var(--gold)] hover:text-[var(--navy)] z-10"
               style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
             >
               <span>Obtenir l'itinéraire</span>
