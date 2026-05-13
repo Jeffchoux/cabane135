@@ -41,13 +41,13 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
       className="relative h-[100svh] min-h-[640px] w-full overflow-hidden"
     >
       <Image
-        src="/terrasse-panoramique.jpg"
-        alt="Vue panoramique de la terrasse de la Cabane 135"
+        src="/concert-crepuscule.jpg"
+        alt="Cabane 135 au crépuscule — l'estuaire à l'heure bleue, concert live à la cabane"
         fill
         priority
         sizes="100vw"
         className="object-cover"
-        style={{ objectPosition: "center center" }}
+        style={{ objectPosition: "center 35%" }}
       />
 
       <div
