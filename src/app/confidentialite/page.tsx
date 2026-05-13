@@ -77,7 +77,9 @@ export default function Page() {
           </li>
           <li>
             <strong>Vercel Inc.</strong> (États-Unis) — hébergement du site, de la
-            base de données et du stockage des photographies publiées
+            base de données, stockage des photographies publiées, et mesure
+            d'audience anonyme (Vercel Analytics + Speed Insights, sans cookies
+            ni identifiant persistant)
           </li>
           <li>
             <strong>Google LLC</strong> (États-Unis) — affichage de la carte de
@@ -117,8 +119,13 @@ export default function Page() {
         <p>
           Le site utilise uniquement des cookies techniques strictement
           nécessaires à son fonctionnement (session JWT côté administration).
-          Aucun cookie de mesure d'audience ou de publicité n'est déposé sans
-          votre consentement.
+        </p>
+        <p>
+          La mesure d'audience est réalisée via <strong>Vercel Analytics</strong>
+          et <strong>Vercel Speed Insights</strong> : ces outils ne déposent
+          aucun cookie tiers et ne créent aucun identifiant persistant, en
+          conformité avec les recommandations de la CNIL sur la mesure
+          d'audience exemptée de consentement.
         </p>
         <p>
           La carte Google Maps déposera ses propres cookies tiers uniquement

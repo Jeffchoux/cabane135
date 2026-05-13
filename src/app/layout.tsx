@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bodoni_Moda, Jost } from "next/font/google";
-import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LenisProvider } from "@/components/3d/LenisProvider";
 import { StructuredData } from "@/components/seo/StructuredData";
 import "./globals.css";
@@ -91,7 +92,6 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const ga = process.env.NEXT_PUBLIC_GA_ID;
   return (
     <html lang="fr" className={`${serif.variable} ${sans.variable}`}>
       <head>
@@ -99,20 +99,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <LenisProvider>{children}</LenisProvider>
-        {ga && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${ga}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${ga}');`}
-            </Script>
-          </>
-        )}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
