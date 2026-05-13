@@ -57,7 +57,7 @@ function OysterShell({ scrollProgress, mouseX, mouseY }: Props) {
     top.position.y = Math.sin(openAngle) * 0.32;
 
     g.position.z = -scrollProgress * 2;
-    g.position.y = scrollProgress * 0.4;
+    g.position.y = -1.6 + scrollProgress * 0.4;
 
     g.rotation.y += 0.0025;
 
@@ -68,7 +68,7 @@ function OysterShell({ scrollProgress, mouseX, mouseY }: Props) {
   });
 
   return (
-    <group ref={groupRef} scale={1.35}>
+    <group ref={groupRef} scale={0.55} position={[0, -1.6, 0]}>
       <mesh geometry={bottomGeometry} castShadow receiveShadow>
         <MeshDistortMaterial
           color="#c8a97a"
@@ -174,7 +174,7 @@ export function OysterScene({ scrollProgress, mouseX, mouseY }: Props) {
       }}
     >
       <Canvas
-        camera={{ position: [0, 0, 4], fov: 45 }}
+        camera={{ position: [0, 0, 5], fov: 40 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 1.5]}
         frameloop="always"
