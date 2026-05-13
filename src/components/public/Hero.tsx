@@ -88,7 +88,7 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
         </div>
       )}
 
-      <header className="absolute top-6 right-6 md:top-10 md:right-12 z-10 text-right">
+      <header className="absolute top-20 md:top-24 right-6 md:right-12 z-10 text-right">
         <p className="section-label flex items-center justify-end gap-2.5">
           <span
             aria-hidden

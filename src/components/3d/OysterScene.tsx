@@ -68,7 +68,7 @@ function OysterShell({ scrollProgress, mouseX, mouseY }: Props) {
   });
 
   return (
-    <group ref={groupRef} scale={0.95} position={[0, 0.15, 0]} rotation={[-0.35, 0, 0.18]}>
+    <group ref={groupRef} scale={0.75} position={[0, 0.1, 0]} rotation={[0, 0, 0.08]}>
       <mesh geometry={bottomGeometry} castShadow receiveShadow>
         <MeshDistortMaterial
           color="#c8a97a"
