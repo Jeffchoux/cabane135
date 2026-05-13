@@ -87,35 +87,35 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
       </header>
 
       <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-16 sm:px-10 md:px-14 md:pb-20 lg:px-20 lg:pb-24">
+        <p
+          className="section-label animate-fade-up"
+          style={{ animationDelay: "0.1s" }}
+        >
+          Nieul-sur-Mer · Charente-Maritime
+        </p>
+
+        <h1
+          className="serif mt-6 md:mt-8 font-normal leading-[0.92] tracking-[0.01em]"
+          style={{ perspective: 1200 }}
+        >
+          <span
+            className="block text-[var(--pearl)] whitespace-nowrap"
+            style={{ fontSize: "clamp(3rem, 10.5vw, 7.5rem)" }}
+          >
+            <StaggerText text="CABANE" />
+          </span>
+          <span
+            className="block text-[var(--turquoise)] whitespace-nowrap"
+            style={{
+              fontSize: "clamp(3.5rem, 13vw, 9.5rem)",
+              marginTop: "-0.08em",
+            }}
+          >
+            <StaggerText text="135" baseDelay={0.36} step={0.08} />
+          </span>
+        </h1>
+
         <div className="max-w-[36rem]">
-          <p
-            className="section-label animate-fade-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            Nieul-sur-Mer · Charente-Maritime
-          </p>
-
-          <h1
-            className="serif mt-6 md:mt-8 font-light leading-[0.92] tracking-[0.02em]"
-            style={{ perspective: 1200 }}
-          >
-            <span
-              className="block text-[var(--pearl)]"
-              style={{ fontSize: "clamp(3.75rem, 13vw, 9rem)" }}
-            >
-              <StaggerText text="CABANE" />
-            </span>
-            <span
-              className="block text-[var(--turquoise)]"
-              style={{
-                fontSize: "clamp(4.5rem, 16vw, 11rem)",
-                marginTop: "-0.08em",
-              }}
-            >
-              <StaggerText text="135" baseDelay={0.36} step={0.08} />
-            </span>
-          </h1>
-
           <div
             ref={tailRef}
             className="mt-7 md:mt-9 transition-opacity duration-1000"
