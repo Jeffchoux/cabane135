@@ -3,67 +3,83 @@ const items = [
     name: "Instagram",
     handle: "@huitresleboncabane135",
     url: "https://www.instagram.com/huitresleboncabane135/",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="3" y="3" width="18" height="18" rx="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
-      </svg>
-    ),
   },
   {
     name: "Facebook",
     handle: "Huîtres Lebon Cabane 135",
     url: "https://www.facebook.com/people/Hu%C3%AEtres-Lebon-Cabane-135/61576413212556/",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M22 12.07C22 6.5 17.52 2 12 2S2 6.5 2 12.07c0 5 3.66 9.14 8.44 9.93v-7.02H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.77l-.44 2.91h-2.33V22c4.78-.79 8.44-4.93 8.44-9.93z" />
-      </svg>
-    ),
   },
   {
     name: "TikTok",
     handle: "@huitresleboncabane135",
     url: "https://www.tiktok.com/@huitresleboncabane135",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M16.5 5.7c-.9-.9-1.4-2.1-1.5-3.5h-3v13.4c0 1.6-1.3 2.9-2.9 2.9-1.6 0-2.9-1.3-2.9-2.9 0-1.6 1.3-2.9 2.9-2.9.3 0 .6 0 .8.1V9.7c-.3 0-.5-.1-.8-.1C5.9 9.6 3 12.5 3 16s2.9 6.3 6.4 6.3 6.4-2.9 6.4-6.3V9.2c1.2.9 2.7 1.4 4.2 1.4V7.6c-1.4 0-2.7-.7-3.5-1.9z" />
-      </svg>
-    ),
   },
 ];
 
 export function SocialSection() {
   return (
-    <section className="px-6 py-24">
-      <div className="mx-auto max-w-5xl text-center">
-        <p className="section-label">Réseaux</p>
-        <h2 className="serif mt-4 text-4xl md:text-5xl font-light text-[var(--pearl)]">
-          Restez <span className="italic text-[var(--gold)]">connectés</span>
-        </h2>
-        <p className="mt-4 text-white/55 max-w-xl mx-auto">
-          Suivez nos arrivages, plateaux du jour et événements à la cabane.
-        </p>
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-3">
-          {items.map((it) => (
-            <a
-              key={it.name}
-              href={it.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass p-6 flex flex-col items-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--turquoise)]/40"
-              style={{ transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
+    <section className="px-6 py-24 md:py-32 lg:px-12">
+      <div className="mx-auto max-w-5xl">
+        <div className="grid gap-10 md:grid-cols-12 md:gap-12 mb-12 md:mb-16">
+          <header className="md:col-span-5">
+            <p className="section-label">Réseaux</p>
+            <h2
+              className="serif mt-5 font-light text-[var(--pearl)] leading-[1.05]"
+              style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)" }}
             >
-              <span className="text-[var(--gold)]">{it.icon}</span>
-              <p className="serif text-xl text-[var(--pearl)]">{it.name}</p>
-              <p className="text-xs text-white/50 tracking-wide">{it.handle}</p>
-              <p className="text-[0.65rem] tracking-[0.3em] uppercase text-[var(--gold)]">
-                Suivre →
-              </p>
-            </a>
-          ))}
+              Restez à l'écoute.
+            </h2>
+          </header>
+          <p className="md:col-span-6 md:col-start-7 text-white/55 text-[0.95rem] leading-relaxed self-end max-w-md">
+            Arrivages du jour, plateaux du soir, événements à la cabane. On
+            poste là plutôt qu'on envoie des newsletters.
+          </p>
         </div>
+
+        <ol className="divide-y divide-[var(--gold)]/15 border-y border-[var(--gold)]/15">
+          {items.map((it) => (
+            <li key={it.name}>
+              <a
+                href={it.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group grid grid-cols-12 items-center gap-4 md:gap-8 py-6 md:py-8 transition-colors duration-300 hover:bg-[var(--ocean)]/30"
+              >
+                <span
+                  className="col-span-4 md:col-span-3 serif text-[var(--pearl)] font-light leading-none"
+                  style={{ fontSize: "clamp(1.25rem, 2.2vw, 2rem)" }}
+                >
+                  {it.name}
+                </span>
+                <span className="hidden md:block md:col-span-5">
+                  <span
+                    aria-hidden
+                    className="block h-px w-full bg-[var(--gold)]/30 transition-all duration-500"
+                    style={{
+                      transformOrigin: "left",
+                      transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
+                    }}
+                  />
+                </span>
+                <span className="col-span-6 md:col-span-3 text-white/55 text-[0.85rem] tracking-wide truncate">
+                  {it.handle}
+                </span>
+                <span
+                  className="col-span-2 md:col-span-1 text-[var(--gold)] tracking-[0.28em] text-[0.65rem] uppercase text-right inline-flex items-center justify-end gap-2 transition-transform duration-500"
+                  style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
+                >
+                  <span className="hidden md:inline">Suivre</span>
+                  <span
+                    aria-hidden
+                    className="transition-transform duration-500 group-hover:translate-x-1.5"
+                  >
+                    →
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

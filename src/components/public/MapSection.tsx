@@ -3,18 +3,34 @@ export function MapSection() {
     "https://www.google.com/maps/dir/?api=1&destination=46.20415,-1.202009";
   const embed =
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101!2d-1.2020846!3d46.20422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4806abbb0675ed91%3A0xdb815905e96cb6a0!2sHUITRES%20LEBON%20CABANE%20135!5e0!3m2!1sfr!2sfr!4v1";
+
   return (
-    <section id="trouver" className="px-6 py-24">
+    <section
+      id="trouver"
+      className="relative px-6 py-28 md:py-32 lg:px-12"
+    >
       <div className="mx-auto max-w-6xl">
-        <div className="text-center mb-12">
-          <p className="section-label">Adresse</p>
-          <h2 className="serif mt-4 text-4xl md:text-5xl font-light text-[var(--pearl)]">
-            Nous <span className="italic text-[var(--gold)]">trouver</span>
-          </h2>
+        <div className="grid gap-10 md:grid-cols-12 md:gap-12 mb-14 md:mb-16">
+          <header className="md:col-span-5">
+            <p className="section-label">Adresse</p>
+            <h2
+              className="serif mt-5 font-light text-[var(--pearl)] leading-[1.05]"
+              style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)" }}
+            >
+              Nous trouver.
+            </h2>
+          </header>
+          <p className="md:col-span-6 md:col-start-7 text-white/55 text-[0.95rem] leading-relaxed self-end max-w-md">
+            À quelques minutes de Lauzières, au bout de la rue du Port, là où
+            les marais touchent l'estuaire.
+          </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
-          <div className="md:col-span-2 relative overflow-hidden border border-white/10" style={{ minHeight: 360 }}>
+        <div className="grid gap-px md:gap-0 md:grid-cols-12 bg-[var(--gold)]/15">
+          <div
+            className="relative md:col-span-8 overflow-hidden"
+            style={{ minHeight: 460 }}
+          >
             <iframe
               src={embed}
               title="Carte Cabane 135"
@@ -24,7 +40,8 @@ export function MapSection() {
                 border: 0,
                 position: "absolute",
                 inset: 0,
-                filter: "grayscale(0.85) hue-rotate(180deg) saturate(0.6) brightness(0.85)",
+                filter:
+                  "grayscale(0.85) hue-rotate(180deg) saturate(0.6) brightness(0.82)",
               }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -34,53 +51,74 @@ export function MapSection() {
               href={directions}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute bottom-4 left-4 glass-strong px-4 py-2 text-[0.7rem] tracking-[0.3em] uppercase text-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--navy)] transition-colors"
+              className="group absolute bottom-5 left-5 inline-flex items-center gap-3 text-[var(--gold)] text-[0.68rem] tracking-[0.32em] uppercase backdrop-blur-md bg-[var(--navy)]/65 border border-[var(--gold)]/40 px-5 py-3 transition-colors duration-300 hover:bg-[var(--gold)] hover:text-[var(--navy)]"
+              style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
             >
-              Obtenir l'itinéraire →
+              <span>Obtenir l'itinéraire</span>
+              <span
+                aria-hidden
+                className="transition-transform duration-500 group-hover:translate-x-1.5"
+              >
+                →
+              </span>
             </a>
           </div>
 
-          <div className="glass p-8 flex flex-col gap-5">
+          <aside className="md:col-span-4 bg-[var(--ocean)] p-8 md:p-10 flex flex-col gap-6 justify-between">
             <div>
-              <p className="serif text-2xl text-[var(--pearl)] leading-tight">
+              <p className="text-[0.62rem] tracking-[0.32em] uppercase text-[var(--gold)] mb-3">
+                Rendez-vous
+              </p>
+              <p
+                className="serif text-[var(--pearl)] font-light leading-tight"
+                style={{ fontSize: "clamp(1.5rem, 2.4vw, 2rem)" }}
+              >
                 135 rue du Port
               </p>
-              <p className="text-white/70 mt-1">17137 Nieul-sur-Mer</p>
-              <p className="text-white/50 text-sm">Charente-Maritime</p>
+              <p className="text-white/65 mt-2">17137 Nieul-sur-Mer</p>
+              <p className="text-white/40 text-sm">Charente-Maritime</p>
             </div>
-            <div className="h-px bg-[var(--gold)]/20" />
-            <div className="space-y-2 text-sm">
+
+            <div className="space-y-3">
               <a
                 href="tel:+33546413682"
-                className="block text-[var(--pearl)] hover:text-[var(--gold)] transition-colors"
+                className="group inline-flex items-baseline gap-3 text-[var(--pearl)] hover:text-[var(--gold)] transition-colors"
               >
-                05 46 41 36 82
+                <span className="text-[0.55rem] tracking-[0.32em] uppercase text-[var(--gold)]/70 group-hover:text-[var(--gold)]">
+                  Tél
+                </span>
+                <span className="text-base">05 46 41 36 82</span>
               </a>
               <a
                 href="mailto:contact@cabane135.fr"
-                className="block text-[var(--pearl)] hover:text-[var(--gold)] transition-colors"
+                className="group inline-flex items-baseline gap-3 text-[var(--pearl)] hover:text-[var(--gold)] transition-colors"
               >
-                contact@cabane135.fr
+                <span className="text-[0.55rem] tracking-[0.32em] uppercase text-[var(--gold)]/70 group-hover:text-[var(--gold)]">
+                  Mail
+                </span>
+                <span className="text-sm">contact@cabane135.fr</span>
               </a>
             </div>
-            <div className="h-px bg-[var(--gold)]/20" />
+
             <div>
-              <p className="text-[0.65rem] tracking-[0.3em] uppercase text-white/40 mb-2">
+              <p className="text-[0.62rem] tracking-[0.32em] uppercase text-[var(--gold)] mb-3">
                 Horaires
               </p>
-              <p className="text-sm text-white/70 leading-relaxed">
-                Consultez nos réseaux pour les horaires du moment.
+              <p className="text-sm text-white/65 leading-relaxed">
+                Le calendrier d'ouverture se précise au fil des semaines.
+                Suivez{" "}
+                <a
+                  href="https://www.instagram.com/huitresleboncabane135/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--gold)] hover:underline underline-offset-4"
+                >
+                  Instagram
+                </a>{" "}
+                pour les derniers arrivages.
               </p>
-              <a
-                href="https://www.instagram.com/huitresleboncabane135/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-block text-[0.7rem] tracking-[0.3em] uppercase text-[var(--gold)] hover:underline underline-offset-4"
-              >
-                Voir Instagram →
-              </a>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>

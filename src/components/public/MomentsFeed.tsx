@@ -11,36 +11,62 @@ type Post = {
   createdAt: string | Date;
 };
 
+function Heading() {
+  return (
+    <div className="grid gap-10 md:grid-cols-12 md:gap-12 mb-14 md:mb-16">
+      <header className="md:col-span-5">
+        <p className="section-label">Nos moments</p>
+        <h2
+          className="serif mt-5 font-light text-[var(--pearl)] leading-[1.05]"
+          style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)" }}
+        >
+          Arrivages, dégustation,
+          <span className="block serif italic text-[var(--gold)]">
+            coulisses du marais.
+          </span>
+        </h2>
+      </header>
+      <p className="md:col-span-6 md:col-start-7 text-white/55 text-[0.95rem] leading-relaxed self-end max-w-md">
+        Une chronique courte de ce qui passe à la cabane — l'ardoise du jour,
+        un détail, un coucher de soleil sur le ponton.
+      </p>
+    </div>
+  );
+}
+
 export function MomentsFeed({ posts }: { posts: Post[] }) {
   if (!posts.length) {
     return (
-      <section id="moments" className="px-6 py-24">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="section-label">Nos moments</p>
-          <h2 className="serif mt-4 text-4xl md:text-5xl font-light text-[var(--pearl)]">
-            Arrivages, dégustation, <span className="italic text-[var(--gold)]">coulisses</span>
-          </h2>
-          <p className="mt-6 text-white/50">
-            Les prochains posts apparaîtront ici. Suivez-nous sur Instagram pour ne rien
-            manquer.
-          </p>
+      <section id="moments" className="px-6 py-28 md:py-32 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <Heading />
+          <div className="border-y border-[var(--gold)]/15 py-16 text-center">
+            <p className="serif italic text-[var(--pearl)]/70 text-lg max-w-lg mx-auto leading-snug">
+              Les premiers moments arriveront avec la cabane,{" "}
+              <span className="text-[var(--gold)]">au printemps</span>.
+            </p>
+            <p className="mt-4 text-white/45 text-sm">
+              D'ici là, le récit continue sur{" "}
+              <a
+                href="https://www.instagram.com/huitresleboncabane135/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--gold)] hover:underline underline-offset-4"
+              >
+                Instagram
+              </a>
+              .
+            </p>
+          </div>
         </div>
       </section>
     );
   }
 
   return (
-    <section id="moments" className="relative px-6 py-28">
+    <section id="moments" className="relative px-6 py-28 md:py-32 lg:px-12">
       <div className="mx-auto max-w-6xl">
-        <div className="text-center mb-12">
-          <p className="section-label">Nos moments</p>
-          <h2 className="serif mt-4 text-4xl md:text-6xl font-light text-[var(--pearl)]">
-            Nos <span className="italic text-[var(--gold)]">moments</span>
-          </h2>
-          <p className="mt-4 text-white/55">
-            Arrivages, dégustation, coulisses du marais.
-          </p>
-        </div>
+        <Heading />
 
         <div className="masonry-3">
           {posts.map((p, i) => (
@@ -50,7 +76,7 @@ export function MomentsFeed({ posts }: { posts: Post[] }) {
               style={{ animationDelay: `${Math.min(i * 0.06, 0.6)}s` }}
             >
               {p.pinned && (
-                <span className="absolute top-2 left-2 z-10 bg-[var(--gold)] text-[var(--navy)] px-2 py-0.5 text-[0.6rem] tracking-[0.2em] uppercase">
+                <span className="absolute top-2 left-2 z-10 bg-[var(--gold)] text-[var(--navy)] px-2 py-0.5 text-[0.6rem] tracking-[0.25em] uppercase">
                   Épinglé
                 </span>
               )}
@@ -79,16 +105,18 @@ export function MomentsFeed({ posts }: { posts: Post[] }) {
               {p.type === "TEXT" && p.caption && (
                 <div className="p-8">
                   <p className="serif italic text-2xl text-[var(--pearl)] leading-relaxed">
-                    "{p.caption}"
+                    « {p.caption} »
                   </p>
                 </div>
               )}
 
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-[var(--navy)]/75 flex flex-col justify-end p-4">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-[var(--navy)]/75 flex flex-col justify-end p-5">
                 {p.caption && p.type !== "TEXT" && (
-                  <p className="text-sm text-white/90 leading-relaxed">{p.caption}</p>
+                  <p className="text-sm text-white/90 leading-relaxed">
+                    {p.caption}
+                  </p>
                 )}
-                <p className="mt-3 text-[0.6rem] tracking-[0.25em] uppercase text-white/50">
+                <p className="mt-3 text-[0.6rem] tracking-[0.3em] uppercase text-[var(--gold)]/85">
                   {new Date(p.createdAt).toLocaleDateString("fr-FR", {
                     day: "numeric",
                     month: "long",
