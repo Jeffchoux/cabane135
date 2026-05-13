@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-13T00:00:00.000Z",
+  "title": "Design System: Cabane 135",
+  "extensions": {
+    "colorMeta": {
+      "navy": {
+        "role": "neutral-bg",
+        "displayName": "Navy d'Estuaire",
+        "canonical": "oklch(15% 0.04 250)",
+        "tonalRamp": ["#050b15", "#070f1c", "#0a1628", "#0d1b30", "#102139", "#142845", "#1c3458", "#28456f"]
+      },
+      "ocean": {
+        "role": "neutral-surface",
+        "displayName": "Ocean Profond",
+        "canonical": "oklch(20% 0.04 245)",
+        "tonalRamp": ["#080f1b", "#0b1426", "#0f2035", "#122847", "#163055", "#1d3c68", "#2a4d82", "#3c629d"]
+      },
+      "teal": {
+        "role": "neutral-border",
+        "displayName": "Teal Maritime",
+        "canonical": "oklch(28% 0.06 235)",
+        "tonalRamp": ["#0a1d2e", "#102a3e", "#163a55", "#1e4a6c", "#275a82", "#326c98", "#487fac", "#6595bf"]
+      },
+      "gold": {
+        "role": "primary",
+        "displayName": "Or d'Huître",
+        "canonical": "oklch(72% 0.10 80)",
+        "tonalRamp": ["#3f3219", "#5f4d27", "#7f6735", "#a08344", "#c8a15a", "#d6b378", "#e3c597", "#efddc1"]
+      },
+      "turquoise": {
+        "role": "secondary",
+        "displayName": "Turquoise de Lagon",
+        "canonical": "oklch(72% 0.13 220)",
+        "tonalRamp": ["#003744", "#005769", "#00778f", "#0098b6", "#00b8d9", "#33c8e0", "#66d7e7", "#a3e7ef"]
+      },
+      "pearl": {
+        "role": "neutral-text",
+        "displayName": "Pearl-Nacré",
+        "canonical": "oklch(93% 0.02 80)",
+        "tonalRamp": ["#3c3830", "#5e574b", "#807969", "#a39a87", "#c4bba6", "#dbd2bd", "#eae0c9", "#f2ece0"]
+      },
+      "cream": {
+        "role": "neutral-bg-light",
+        "displayName": "Cream",
+        "canonical": "oklch(97% 0.01 80)",
+        "tonalRamp": ["#4a4538", "#6e6850", "#928a68", "#b5ac84", "#d5cca5", "#e5dcc1", "#f0e9d6", "#faf7f2"]
+      },
+      "glass": {
+        "role": "surface-overlay",
+        "displayName": "Voile Glass",
+        "canonical": "rgba(255,255,255,0.04)",
+        "tonalRamp": []
+      },
+      "glass-border": {
+        "role": "border-overlay",
+        "displayName": "Glass Border",
+        "canonical": "rgba(255,255,255,0.08)",
+        "tonalRamp": []
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display Signature", "purpose": "Réservé au titre 'CABANE 135' uniquement. Une seule fois par page." },
+      "headline": { "displayName": "Headline Éditorial", "purpose": "Titres de section principaux (H2) en Cormorant 300." },
+      "title": { "displayName": "Title", "purpose": "Sous-titres de bloc et items de listes éditoriales." },
+      "body": { "displayName": "Body Long Form", "purpose": "Corps de texte courant. Jost 300, lignes capées 65-75ch." },
+      "label": { "displayName": "Label Tracking", "purpose": "Micro-labels gold (section-labels, CTA, méta). Letter-spacing ≥0.3em obligatoire." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out-quart", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Easing par défaut. Toute transition d'état, toute apparition." },
+      { "name": "ease-liquid", "value": "cubic-bezier(0.65, 0, 0.35, 1)", "purpose": "Fill liquide des boutons hover. Plus contrasté à l'entrée." },
+      { "name": "duration-fast", "value": "200ms", "purpose": "Hovers, micro-feedback (changement de couleur)." },
+      { "name": "duration-base", "value": "500ms", "purpose": "Fill liquide btn, balayage de ligne bento, transitions de panneaux." },
+      { "name": "duration-reveal", "value": "700-800ms", "purpose": "Apparitions d'éléments au scroll (fadeUp, slideLeft, slideRight)." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (Liquid Fill)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA principal. Bordure or, fill liquide gold-de-gauche-à-droite au hover.",
+      "html": "<button class=\"ds-btn-primary\">Réserver une table</button>",
+      "css": ".ds-btn-primary { position: relative; overflow: hidden; isolation: isolate; height: 48px; padding: 0 32px; background: transparent; color: #c8a15a; border: 1px solid #c8a15a; border-radius: 0; font-family: 'Jost', system-ui, sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; cursor: pointer; transition: color 0.4s ease; } .ds-btn-primary::before { content: ''; position: absolute; inset: 0; background: #c8a15a; transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1); z-index: -1; } .ds-btn-primary:hover::before { transform: scaleX(1); } .ds-btn-primary:hover { color: #0a1628; } .ds-btn-primary:focus-visible { outline: 2px solid rgba(200,161,90,0.5); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "CTA secondaire. Fond glass discret, sans fill au hover.",
+      "html": "<button class=\"ds-btn-ghost\">Découvrir ↓</button>",
+      "css": ".ds-btn-ghost { height: 48px; padding: 0 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); color: rgba(242,236,224,0.8); font-family: 'Jost', system-ui, sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; border-radius: 0; cursor: pointer; transition: color 0.3s ease; } .ds-btn-ghost:hover { color: #f2ece0; } .ds-btn-ghost:focus-visible { outline: 2px solid rgba(200,161,90,0.5); outline-offset: 3px; }"
+    },
+    {
+      "name": "Section Label",
+      "kind": "custom",
+      "refersTo": "section-label",
+      "description": "Micro-élément signature. Précède chaque headline. Or trackée, majuscules.",
+      "html": "<p class=\"ds-section-label\">L'Histoire</p>",
+      "css": ".ds-section-label { font-family: 'Jost', system-ui, sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: #c8a15a; margin: 0; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Champ texte. Fond glass, bordure subtile, focus gold à 50%.",
+      "html": "<label class=\"ds-input-label\"><span>Nom <span class=\"ds-required\">*</span></span><input class=\"ds-input\" type=\"text\" required /></label>",
+      "css": ".ds-input-label { display: flex; flex-direction: column; gap: 6px; } .ds-input-label > span { font-family: 'Jost', system-ui, sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: #c8a15a; } .ds-required { color: #c8a15a; } .ds-input { height: 44px; padding: 0 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 2px; color: #f2ece0; font-family: 'Jost', system-ui, sans-serif; font-size: 1rem; transition: border-color 0.2s ease; } .ds-input:focus { outline: none; border-color: rgba(200,161,90,0.5); } .ds-input:focus-visible { outline: 2px solid rgba(200,161,90,0.5); outline-offset: 2px; }"
+    },
+    {
+      "name": "Glass Card (strong)",
+      "kind": "card",
+      "refersTo": "card-glass",
+      "description": "Carte d'élévation utilisée pour modale et surfaces critiques superposées à une photo. Bordure or à 20%.",
+      "html": "<article class=\"ds-card-glass\"><p class=\"ds-section-label\">Réservation</p><h3>Une table à la Cabane</h3><p class=\"ds-body\">Nous confirmons votre table par retour. Pas de paiement en ligne.</p></article>",
+      "css": ".ds-card-glass { background: rgba(15,32,53,0.7); border: 1px solid rgba(200,161,90,0.20); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); border-radius: 2px; padding: 32px; color: #f2ece0; max-width: 480px; } .ds-card-glass h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem; font-weight: 400; line-height: 1.3; margin: 12px 0 16px; color: #f2ece0; } .ds-card-glass .ds-body { font-family: 'Jost', system-ui, sans-serif; font-size: 0.875rem; line-height: 1.7; color: rgba(242,236,224,0.7); margin: 0; }"
+    },
+    {
+      "name": "Editorial Timeline",
+      "kind": "custom",
+      "refersTo": "timeline",
+      "description": "Liste verticale avec bordure or à gauche, puces or et micro-labels. Aucune card, aucune icône.",
+      "html": "<ol class=\"ds-timeline\"><li class=\"ds-timeline-item\"><span class=\"ds-timeline-dot\" aria-hidden=\"true\"></span><p class=\"ds-timeline-meta\">2012 · La Réunion</p><p class=\"ds-timeline-body\">Nicolas &amp; Nadège créent Huîtres Lebon à Saint-Denis.</p></li><li class=\"ds-timeline-item\"><span class=\"ds-timeline-dot\" aria-hidden=\"true\"></span><p class=\"ds-timeline-meta\">1ᵉʳ Mai 2026 · Nieul-sur-Mer</p><p class=\"ds-timeline-body\">Ouverture de la Cabane 135.</p></li></ol>",
+      "css": ".ds-timeline { list-style: none; padding: 0 0 0 24px; margin: 0; border-left: 1px solid rgba(200,161,90,0.25); display: flex; flex-direction: column; gap: 16px; } .ds-timeline-item { position: relative; padding-left: 0; } .ds-timeline-dot { position: absolute; left: -31px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: #c8a15a; display: block; } .ds-timeline-meta { font-family: 'Jost', system-ui, sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: #c8a15a; margin: 0 0 4px; } .ds-timeline-body { font-family: 'Jost', system-ui, sans-serif; font-size: 0.875rem; line-height: 1.7; color: rgba(242,236,224,0.65); margin: 0; }"
+    },
+    {
+      "name": "Bento Card with Sliding Underline",
+      "kind": "card",
+      "refersTo": "bento-card",
+      "description": "Card transparente avec une ligne or qui balaye de gauche à droite au hover. Pas de scale, pas de translate.",
+      "html": "<a class=\"ds-bento\" href=\"#\"><span class=\"ds-bento-num\">01</span><h3 class=\"ds-bento-title\">Huîtres fraîches</h3><p class=\"ds-bento-body\">Calibrées, ouvertes minute. Citron, vinaigre échalote.</p></a>",
+      "css": ".ds-bento { position: relative; overflow: hidden; display: block; padding: 32px 0; color: inherit; text-decoration: none; transition: background 0.4s ease; } .ds-bento::after { content: ''; position: absolute; bottom: 0; left: 0; height: 2px; width: 0; background: #c8a15a; transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1); } .ds-bento:hover::after { width: 100%; } .ds-bento-num { font-family: 'Jost', system-ui, sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.4em; color: #c8a15a; } .ds-bento-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem; font-weight: 400; color: #f2ece0; margin: 12px 0 8px; } .ds-bento-body { font-family: 'Jost', system-ui, sans-serif; font-size: 1rem; line-height: 1.7; color: rgba(242,236,224,0.7); margin: 0; max-width: 65ch; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "L'estuaire à l'aube",
+    "overview": "Cabane 135 vit dans la lumière humide de la baie au lever du jour. Le navy profond domine — c'est la mer avant que le soleil ne touche l'eau. Le pearl-nacré éclaire les titres comme la première lueur sur une coquille fraîchement ouverte. Le gold-amber ponctue rarement, comme la chair de l'huître. Le turquoise ne s'autorise qu'une apparition — celle du chiffre 135, la signature, le lagon réunionnais qui revient hanter la Charente.\n\nLe système rejette frontalement quatre directions : les gradients bleus SaaS, les listings de marketplace, le wellness beige fade, et le restaurant cliché vieillot. On vise l'éditorial moderne d'un magazine de gastronomie.",
+    "keyCharacteristics": [
+      "Fond navy profond constant — la nuit maritime, pas le dark mode tech.",
+      "Gold-amber rare (≤10% de la surface) — l'huître qui s'ouvre, pas l'or qui clinque.",
+      "Serif Cormorant 300 sur grandes échelles — signature, pas décoration.",
+      "Photographies pleine largeur, pas de grids de cards.",
+      "Animations exponential ease-out, jamais bounce, jamais elastic.",
+      "Mobile-first sans dégrader la signature éditoriale."
+    ],
+    "rules": [
+      { "name": "La Règle des 10%", "body": "L'Or d'Huître occupe au maximum 10% de la surface visible. Sa rareté est le sujet.", "section": "colors" },
+      { "name": "La Règle d'Une Voix Turquoise", "body": "Le Turquoise de Lagon n'apparaît qu'une seule fois par viewport, et porte une intention précise.", "section": "colors" },
+      { "name": "La Règle Anti-Gradient", "body": "Aucun dégradé sur du texte, des CTA, des cards. background-clip: text est interdit.", "section": "colors" },
+      { "name": "La Règle de la Signature Unique", "body": "Le Display Cormorant 11rem n'apparaît qu'une fois par page — pour 'CABANE 135'.", "section": "typography" },
+      { "name": "La Règle des Lignes Courtes", "body": "Body capé à 65-75ch. Au-delà, l'œil décroche.", "section": "typography" },
+      { "name": "La Règle Flat-Par-Défaut", "body": "Aucune box-shadow. Le contraste, le blur, ou un border or font le travail.", "section": "elevation" },
+      { "name": "La Règle du Glass Justifié", "body": "Le glassmorphism n'est jamais décoratif. Il sert à séparer un contenu d'une photographie.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do réserver le Display Cormorant 300 (11rem) au seul titre 'CABANE 135'.",
+      "Do utiliser le gold sur ≤10% de la surface visible.",
+      "Do caper les paragraphes à 65-75ch.",
+      "Do numéroter les blocs éditoriaux (01 / 02 / 03) en gold trackés.",
+      "Do privilégier les photographies pleine largeur aux grids de cards.",
+      "Do utiliser le turquoise une seule fois par viewport, pour porter une intention.",
+      "Do utiliser cubic-bezier(0.16, 1, 0.3, 1) pour toutes les transitions.",
+      "Do respecter prefers-reduced-motion (LenisProvider + useCanRender3D).",
+      "Do garder un ratio de contraste ≥ 4.5:1 sur tout texte courant."
+    ],
+    "donts": [
+      "Don't utiliser de gradient sur du texte (background-clip: text interdit).",
+      "Don't utiliser de gradient bleu SaaS — c'est le cliché Stripe/Linear.",
+      "Don't construire de hero-metric ('+50% de…', '1500 huîtres servies').",
+      "Don't empiler des cards à icône identiques en grid.",
+      "Don't afficher de badges étoiles, prix en hero, 'réservez en 2 clics' — langage marketplace.",
+      "Don't virer vers le beige uniforme + sans-serif fade — piège wellness.",
+      "Don't céder à la calligraphie tarabiscotée, parchemin, photos jaunies.",
+      "Don't utiliser de box-shadow.",
+      "Don't utiliser de border-left ou border-right >1px en accent coloré.",
+      "Don't utiliser des modales en premier réflexe.",
+      "Don't animer width, height, top, left. Utiliser transform et opacity uniquement.",
+      "Don't utiliser bounce ou elastic. Exponential ease-out, point.",
+      "Don't banaliser le turquoise — c'est l'éclair réunionnais, pas un accent générique."
+    ]
+  }
+}
