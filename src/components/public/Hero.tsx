@@ -41,12 +41,13 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
       className="relative h-[100svh] min-h-[640px] w-full overflow-hidden"
     >
       <Image
-        src="/terrasse-vue-marais.jpg"
-        alt="Vue depuis la terrasse de la Cabane 135 sur les marais charentais à l'aube"
+        src="/concert-crepuscule.jpg"
+        alt="Cabane 135 au crépuscule — l'estuaire à l'heure bleue"
         fill
         priority
         sizes="100vw"
         className="object-cover"
+        style={{ objectPosition: "center 35%" }}
       />
 
       <div
@@ -54,15 +55,23 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(105deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.78) 38%, rgba(10,22,40,0.25) 72%, rgba(10,22,40,0.12) 100%)",
+            "linear-gradient(110deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.62) 42%, rgba(10,22,40,0.18) 78%, rgba(10,22,40,0.08) 100%)",
         }}
       />
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 h-2/3"
+        className="absolute inset-x-0 bottom-0 h-3/4"
         style={{
           background:
-            "linear-gradient(to top, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.35) 50%, transparent 100%)",
+            "linear-gradient(to top, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.55) 35%, rgba(10,22,40,0.15) 70%, transparent 100%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-32"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(10,22,40,0.7) 0%, transparent 100%)",
         }}
       />
 

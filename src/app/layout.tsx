@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Bodoni_Moda, Jost } from "next/font/google";
 import Script from "next/script";
 import { LenisProvider } from "@/components/3d/LenisProvider";
 import "./globals.css";
 
-const serif = Cormorant_Garamond({
+const serif = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-serif",
   display: "swap",

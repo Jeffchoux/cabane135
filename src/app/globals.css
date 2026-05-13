@@ -57,7 +57,7 @@ body {
 }
 
 .serif {
-  font-family: var(--font-serif), "Cormorant Garamond", serif;
+  font-family: var(--font-serif), "Bodoni Moda", "Didot", "Bodoni 72", serif;
 }
 
 .section-label {
