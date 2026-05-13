@@ -71,7 +71,7 @@ export function HistorySection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-14 md:grid-cols-12 md:gap-16">
           <div
-            className={`md:col-span-5 ${visible ? "animate-slide-left" : "opacity-0"}`}
+            className={`md:col-span-5 ${visible ? "animate-slide-left" : ""}`}
           >
             <p className="section-label">L'histoire</p>
             <h2
@@ -132,7 +132,7 @@ export function HistorySection() {
                 <figure
                   key={s.src}
                   className={`${s.offset} ${
-                    visible ? "animate-slide-right" : "opacity-0"
+                    visible ? "animate-slide-right" : ""
                   } transition-transform`}
                   style={{ animationDelay: `${0.12 + i * 0.12}s` }}
                 >

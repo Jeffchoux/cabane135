@@ -44,7 +44,7 @@ export function BentoSection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-14 md:grid-cols-12 md:gap-12 lg:gap-16">
           <header
-            className={`md:col-span-5 ${vis ? "animate-fade-up" : "opacity-0"}`}
+            className={`md:col-span-5 ${vis ? "animate-fade-up" : ""}`}
           >
             <p className="section-label">À la cabane</p>
             <h2
@@ -68,7 +68,7 @@ export function BentoSection() {
           </header>
 
           <div
-            className={`md:col-span-7 ${vis ? "animate-slide-right" : "opacity-0"}`}
+            className={`md:col-span-7 ${vis ? "animate-slide-right" : ""}`}
             style={{ animationDelay: "0.15s" }}
           >
             <div className="relative aspect-[5/4] md:aspect-[4/5] lg:aspect-[5/4] w-full overflow-hidden border border-[var(--gold)]/15">
@@ -104,7 +104,7 @@ export function BentoSection() {
             <li
               key={it.roman}
               className={`grid grid-cols-12 gap-4 md:gap-10 py-8 md:py-12 ${
-                vis ? "animate-fade-up" : "opacity-0"
+                vis ? "animate-fade-up" : ""
               }`}
               style={{ animationDelay: `${0.25 + i * 0.12}s` }}
             >
