@@ -90,7 +90,7 @@ export function ReservationPanel({
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
-      <aside
+      <div
         role="dialog"
         aria-modal="true"
         aria-label="Réserver une table"
@@ -235,7 +235,7 @@ export function ReservationPanel({
             </form>
           )}
         </div>
-      </aside>
+      </div>
     </>
   );
 }
