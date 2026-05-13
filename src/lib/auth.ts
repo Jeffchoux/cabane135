@@ -3,6 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import { timingSafeEqual } from "crypto";
 import bcrypt from "bcryptjs";
+import { checkAuthLimit } from "@/lib/rate-limit";
 
 const credentialsSchema = z.object({
   email: z.string().email(),
@@ -40,7 +41,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Mot de passe", type: "password" },
       },
-      authorize: async (raw) => {
+      authorize: async (raw, request) => {
+        // Rate-limit par IP sur les tentatives de login (anti-brute-force)
+        const ip =
+          request?.headers?.get?.("x-forwarded-for")?.split(",")[0]?.trim() ??
+          request?.headers?.get?.("x-real-ip") ??
+          "unknown";
+        const rl = await checkAuthLimit(ip);
+        if (!rl.ok) {
+          console.warn(
+            `[auth] rate-limit exceeded for ${ip} at ${new Date().toISOString()}`
+          );
+          return null;
+        }
+
         const parsed = credentialsSchema.safeParse(raw);
         if (!parsed.success) return null;
         const { email, password } = parsed.data;
