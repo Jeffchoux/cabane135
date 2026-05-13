@@ -50,6 +50,26 @@ export function ReservationManager({ initial }: { initial: R[] }) {
     setBusy(null);
   }
 
+  async function remove(id: string, name: string) {
+    if (
+      !confirm(
+        `Supprimer définitivement la réservation de "${name}" ?\n\nCette action est irréversible.`
+      )
+    ) {
+      return;
+    }
+    setBusy(id);
+    const prev = rows;
+    setRows((arr) => arr.filter((r) => r.id !== id));
+    const res = await fetch(`/api/reservations?id=${id}`, { method: "DELETE" });
+    if (!res.ok) {
+      // Rollback si échec
+      setRows(prev);
+      alert("Échec de la suppression. La réservation a été restaurée.");
+    }
+    setBusy(null);
+  }
+
   return (
     <div className="space-y-5">
       <ul className="flex flex-wrap gap-2 border-b border-white/10">
@@ -129,6 +149,14 @@ export function ReservationManager({ initial }: { initial: R[] }) {
                       Annuler
                     </button>
                   )}
+                  <button
+                    onClick={() => remove(r.id, r.name)}
+                    disabled={busy === r.id}
+                    aria-label={`Supprimer la réservation de ${r.name}`}
+                    className="text-xs px-2 py-1 border border-white/15 text-white/50 hover:border-red-500/60 hover:text-red-300 hover:bg-red-500/10 transition-colors"
+                  >
+                    🗑
+                  </button>
                 </td>
               </tr>
             ))}
