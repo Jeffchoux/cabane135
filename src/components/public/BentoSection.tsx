@@ -73,8 +73,8 @@ export function BentoSection() {
           >
             <div className="relative aspect-[5/4] md:aspect-[4/5] lg:aspect-[5/4] w-full overflow-hidden border border-[var(--gold)]/15">
               <Image
-                src="/huitres-citron-vinaigre.jpg"
-                alt="Huîtres ouvertes à la minute, citron et vinaigre échalote"
+                src="/huitres-mignonette.jpg"
+                alt="Plateau d'huîtres ouvertes à la minute, beurre et mignonette à l'échalote"
                 fill
                 sizes="(min-width: 768px) 58vw, 100vw"
                 className="object-cover"

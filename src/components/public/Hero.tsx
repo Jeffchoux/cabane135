@@ -78,15 +78,30 @@ export function Hero({ onReserve }: { onReserve: () => void }) {
         }}
       />
 
-      <header className="absolute top-20 md:top-24 right-6 md:right-12 z-10 text-right">
-        <p className="section-label flex items-center justify-end gap-2.5">
+      <header className="absolute top-20 md:top-24 right-6 md:right-12 z-10">
+        <div
+          className="glass-strong inline-flex items-center gap-2.5 rounded-full px-3.5 py-1.5"
+          style={{
+            background: "rgba(10, 22, 40, 0.55)",
+            borderColor: "rgba(200, 161, 90, 0.28)",
+            boxShadow: "0 1px 12px rgba(0, 0, 0, 0.25)",
+          }}
+        >
           <span
             aria-hidden
             className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--turquoise)]"
-            style={{ animation: "scrollHint 2.4s ease-in-out infinite" }}
+            style={{
+              animation: "scrollHint 2.4s ease-in-out infinite",
+              boxShadow: "0 0 6px rgba(0, 184, 217, 0.6)",
+            }}
           />
-          <span>Ouvert&nbsp;·&nbsp;depuis&nbsp;le&nbsp;1ᵉʳ&nbsp;mai&nbsp;2026</span>
-        </p>
+          <span
+            className="text-[0.62rem] md:text-[0.65rem] uppercase font-medium text-[var(--pearl)]"
+            style={{ letterSpacing: "0.32em" }}
+          >
+            Ouvert&nbsp;·&nbsp;depuis&nbsp;le&nbsp;1ᵉʳ&nbsp;mai&nbsp;2026
+          </span>
+        </div>
       </header>
 
       <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-16 sm:px-10 md:px-14 md:pb-20 lg:px-20 lg:pb-24">
