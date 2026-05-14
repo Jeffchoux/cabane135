@@ -1,7 +1,7 @@
 "use client";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial } from "@react-three/drei";
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
 type Props = {
@@ -113,7 +113,7 @@ function OysterShell({ scrollProgress, mouseX, mouseY }: Props) {
 function Particles({ count = 180 }: { count?: number }) {
   const pointsRef = useRef<THREE.Points>(null);
 
-  const positions = useMemo(() => {
+  const [positions] = useState(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       arr[i * 3] = (Math.random() - 0.5) * 8;
@@ -121,7 +121,7 @@ function Particles({ count = 180 }: { count?: number }) {
       arr[i * 3 + 2] = (Math.random() - 0.5) * 4;
     }
     return arr;
-  }, [count]);
+  });
 
   useFrame((state) => {
     const p = pointsRef.current;
