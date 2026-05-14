@@ -32,9 +32,8 @@ export async function POST(req: Request) {
         maximumSizeInBytes: MAX_BYTES,
         addRandomSuffix: true,
       }),
-      onUploadCompleted: async ({ blob }) => {
-        // Log minimal sans URL pour éviter de pré-divulguer le chemin
-        console.log("[blob uploaded]", blob.pathname);
+      onUploadCompleted: async () => {
+        // no-op : la callback est obligatoire mais on n'a rien à faire
       },
     });
     return NextResponse.json(jsonResponse);
