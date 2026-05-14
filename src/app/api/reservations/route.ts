@@ -1,23 +1,12 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
 import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { sendConfirmation, sendNotification } from "@/lib/resend";
-
-const createSchema = z.object({
-  name: z.string().min(2).max(120),
-  phone: z.string().regex(/^[\d\s+\-.]{8,}$/),
-  email: z.string().email().optional().or(z.literal("").transform(() => undefined)),
-  date: z.string().refine((s) => !Number.isNaN(Date.parse(s)), "Date invalide"),
-  time: z.string().regex(/^\d{1,2}:\d{2}$/),
-  covers: z.number().int().min(1).max(20),
-  message: z.string().max(2000).optional(),
-});
-
-const patchSchema = z.object({
-  status: z.enum(["PENDING", "CONFIRMED", "CANCELLED"]),
-});
+import {
+  reservationCreateSchema as createSchema,
+  reservationPatchSchema as patchSchema,
+} from "@/lib/validation";
 
 export async function POST(req: Request) {
   try {

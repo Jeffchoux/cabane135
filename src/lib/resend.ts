@@ -18,7 +18,7 @@ function client() {
   return resend;
 }
 
-function escapeHtml(s: string): string {
+export function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -41,7 +41,7 @@ type ReservationPayload = {
   message?: string | null;
 };
 
-const formatDate = (d: Date) =>
+export const formatDate = (d: Date) =>
   d.toLocaleDateString("fr-FR", {
     weekday: "long",
     day: "numeric",

@@ -57,7 +57,7 @@ function memLimit(ip: string, max: number, windowMs: number) {
   return { ok: true, remaining: max - entry.count };
 }
 
-function isValidIp(ip: string): boolean {
+export function isValidIp(ip: string): boolean {
   if (!ip || ip.length > 45) return false;
   return /^[0-9a-f:.]+$/i.test(ip);
 }
