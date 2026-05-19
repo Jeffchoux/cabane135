@@ -17,7 +17,7 @@ export default function LoginPage() {
     setLoading(true);
     const fd = new FormData(e.currentTarget);
     const res = await signIn("credentials", {
-      email: fd.get("email"),
+      username: fd.get("username"),
       password: fd.get("password"),
       redirect: false,
     });
@@ -47,8 +47,15 @@ export default function LoginPage() {
           <h1 className="serif text-2xl text-[var(--pearl)]">Administration</h1>
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" name="email" type="email" required autoFocus />
+          <Label htmlFor="username">Identifiant</Label>
+          <Input
+            id="username"
+            name="username"
+            type="text"
+            autoComplete="username"
+            required
+            autoFocus
+          />
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="password">Mot de passe</Label>

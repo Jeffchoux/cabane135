@@ -17,5 +17,21 @@ export const reservationPatchSchema = z.object({
   status: z.enum(["PENDING", "CONFIRMED", "CANCELLED"]),
 });
 
+const ALLOWED_MENU_HOSTS = [
+  /^https:\/\/[a-z0-9-]+\.public\.blob\.vercel-storage\.com\//,
+  /^https:\/\/media\.cabane135\.fr\//,
+];
+
+export const menuImageUpsertSchema = z.object({
+  slot: z.number().int().min(1).max(2),
+  url: z
+    .url()
+    .refine(
+      (u) => ALLOWED_MENU_HOSTS.some((re) => re.test(u)),
+      "Domaine media non autorisé"
+    ),
+});
+
 export type ReservationCreate = z.infer<typeof reservationCreateSchema>;
 export type ReservationPatch = z.infer<typeof reservationPatchSchema>;
+export type MenuImageUpsert = z.infer<typeof menuImageUpsertSchema>;

@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   reservationCreateSchema,
   reservationPatchSchema,
+  menuImageUpsertSchema,
 } from "@/lib/validation";
 
 const valid = {
@@ -88,5 +89,64 @@ describe("reservationPatchSchema", () => {
 
   it("rejette un objet vide", () => {
     expect(reservationPatchSchema.safeParse({}).success).toBe(false);
+  });
+});
+
+describe("menuImageUpsertSchema", () => {
+  const validBlobUrl =
+    "https://abc123.public.blob.vercel-storage.com/menu/menu1-12345.jpg";
+
+  it("accepte slot=1 avec URL Blob Vercel", () => {
+    const r = menuImageUpsertSchema.safeParse({ slot: 1, url: validBlobUrl });
+    expect(r.success).toBe(true);
+  });
+
+  it("accepte slot=2 avec URL Blob Vercel", () => {
+    const r = menuImageUpsertSchema.safeParse({ slot: 2, url: validBlobUrl });
+    expect(r.success).toBe(true);
+  });
+
+  it("accepte URL media.cabane135.fr (legacy)", () => {
+    const r = menuImageUpsertSchema.safeParse({
+      slot: 1,
+      url: "https://media.cabane135.fr/menu.jpg",
+    });
+    expect(r.success).toBe(true);
+  });
+
+  it("rejette slot=0", () => {
+    expect(
+      menuImageUpsertSchema.safeParse({ slot: 0, url: validBlobUrl }).success
+    ).toBe(false);
+  });
+
+  it("rejette slot=3", () => {
+    expect(
+      menuImageUpsertSchema.safeParse({ slot: 3, url: validBlobUrl }).success
+    ).toBe(false);
+  });
+
+  it("rejette une URL hors whitelist (host arbitraire)", () => {
+    expect(
+      menuImageUpsertSchema.safeParse({
+        slot: 1,
+        url: "https://evil.com/menu.jpg",
+      }).success
+    ).toBe(false);
+  });
+
+  it("rejette une URL http:// (non https)", () => {
+    expect(
+      menuImageUpsertSchema.safeParse({
+        slot: 1,
+        url: "http://abc.public.blob.vercel-storage.com/menu.jpg",
+      }).success
+    ).toBe(false);
+  });
+
+  it("rejette une string vide", () => {
+    expect(
+      menuImageUpsertSchema.safeParse({ slot: 1, url: "" }).success
+    ).toBe(false);
   });
 });

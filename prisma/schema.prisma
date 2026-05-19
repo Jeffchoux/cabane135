@@ -43,6 +43,13 @@ model Settings {
   updatedAt DateTime @updatedAt
 }
 
+model MenuImage {
+  id        String   @id @default(cuid())
+  slot      Int      @unique
+  url       String
+  updatedAt DateTime @updatedAt
+}
+
 enum PostType {
   PHOTO
   VIDEO

@@ -30,6 +30,9 @@ export default function AdminLayout({
           <Link href="/admin/reservations" className="px-3 py-2 rounded-sm hover:bg-white/5 text-white/80">
             📅 Réservations
           </Link>
+          <Link href="/admin/carte" className="px-3 py-2 rounded-sm hover:bg-white/5 text-white/80">
+            🦪 La carte
+          </Link>
           <Link href="/" target="_blank" className="px-3 py-2 rounded-sm hover:bg-white/5 text-white/60">
             🌐 Voir le site
           </Link>
@@ -52,9 +55,10 @@ export default function AdminLayout({
 
       <main className="flex-1 min-w-0 pb-24 md:pb-12">{children}</main>
 
-      <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-[var(--ocean)] grid grid-cols-4 text-xs">
+      <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-[var(--ocean)] grid grid-cols-5 text-xs">
         <Link href="/admin" className="flex flex-col items-center py-3 text-white/80">📷</Link>
         <Link href="/admin/reservations" className="flex flex-col items-center py-3 text-white/80">📅</Link>
+        <Link href="/admin/carte" className="flex flex-col items-center py-3 text-white/80">🦪</Link>
         <Link href="/" target="_blank" className="flex flex-col items-center py-3 text-white/60">🌐</Link>
         <form
           action={async () => {

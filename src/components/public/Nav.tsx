@@ -3,9 +3,37 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
+function NavItem({
+  href,
+  label,
+  onClick,
+  className,
+}: {
+  href: string;
+  label: string;
+  onClick?: () => void;
+  className?: string;
+}) {
+  // Liens de page (/carte) vs ancres internes (#histoire) — Link pour navigation propre
+  const isAnchor = href.startsWith("#");
+  if (isAnchor) {
+    return (
+      <a href={href} onClick={onClick} className={className}>
+        {label}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} onClick={onClick} className={className}>
+      {label}
+    </Link>
+  );
+}
+
 const links = [
   { href: "#histoire", label: "Histoire" },
   { href: "#degustation", label: "Dégustation" },
+  { href: "/carte", label: "La carte" },
   { href: "#moments", label: "Moments" },
   { href: "#trouver", label: "Nous trouver" },
 ];
@@ -53,18 +81,17 @@ export function Nav({ onReserve }: { onReserve: () => void }) {
 
         <ul className="hidden md:flex items-center gap-9 text-[0.66rem] tracking-[0.32em] uppercase">
           {links.map((l) => (
-            <li key={l.href}>
-              <a
+            <li key={l.href} className="group relative inline-block py-1">
+              <NavItem
                 href={l.href}
-                className="group relative inline-block py-1 text-white/65 hover:text-[var(--pearl)] transition-colors duration-300"
-              >
-                <span>{l.label}</span>
-                <span
-                  aria-hidden
-                  className="absolute -bottom-0.5 left-0 h-px w-full bg-[var(--gold)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
-                  style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
-                />
-              </a>
+                label={l.label}
+                className="text-white/65 hover:text-[var(--pearl)] transition-colors duration-300"
+              />
+              <span
+                aria-hidden
+                className="absolute -bottom-0.5 left-0 h-px w-full bg-[var(--gold)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+                style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
+              />
             </li>
           ))}
         </ul>
@@ -112,17 +139,16 @@ export function Nav({ onReserve }: { onReserve: () => void }) {
         <div className="md:hidden border-t border-[var(--gold)]/12 bg-[rgba(10,22,40,0.98)] backdrop-blur-2xl">
           <ul className="flex flex-col px-8 py-10 gap-7">
             {links.map((l, i) => (
-              <li key={l.href}>
-                <a
+              <li key={l.href} className="flex items-baseline gap-4">
+                <span className="text-[0.62rem] tracking-[0.32em] uppercase text-[var(--gold)]/70 font-sans">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <NavItem
                   href={l.href}
+                  label={l.label}
                   onClick={() => setOpen(false)}
-                  className="serif text-3xl text-[var(--pearl)] inline-flex items-baseline gap-4"
-                >
-                  <span className="text-[0.62rem] tracking-[0.32em] uppercase text-[var(--gold)]/70 font-sans">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span>{l.label}</span>
-                </a>
+                  className="serif text-3xl text-[var(--pearl)]"
+                />
               </li>
             ))}
             <li className="pt-3 border-t border-[var(--gold)]/15">
