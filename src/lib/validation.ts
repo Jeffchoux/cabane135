@@ -4,7 +4,6 @@ export const reservationCreateSchema = z.object({
   name: z.string().min(2).max(120),
   phone: z.string().regex(/^[\d\s+\-.]{8,}$/),
   email: z
-    .string()
     .email()
     .optional()
     .or(z.literal("").transform(() => undefined)),
