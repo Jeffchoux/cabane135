@@ -10,3 +10,5 @@ next-env.d.ts
 .env.local.backup*
 tsconfig.tsbuildinfo
 coverage
+playwright-report
+test-results
