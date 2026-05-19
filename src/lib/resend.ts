@@ -18,6 +18,11 @@ function client() {
   return resend;
 }
 
+/**
+ * Échappe les caractères HTML dangereux dans les valeurs user-controlled
+ * avant injection dans les emails HTML. DOMPurify serait overkill ici :
+ * on n'autorise AUCUN HTML utilisateur, on échappe tout.
+ */
 export function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -49,6 +54,7 @@ export const formatDate = (d: Date) =>
     year: "numeric",
   });
 
+/** Notifie l'admin d'une nouvelle réservation (email HTML + texte). */
 export async function sendNotification(r: ReservationPayload) {
   if (!apiKey) {
     console.error("[resend] RESEND_API_KEY missing — skipping notification");
@@ -121,6 +127,7 @@ export async function sendNotification(r: ReservationPayload) {
   });
 }
 
+/** Confirme la réception de la demande au client (no-op si pas d'email). */
 export async function sendConfirmation(r: ReservationPayload) {
   if (!apiKey || !r.email) return;
   const subject = `Votre demande de réservation — Cabane 135`;

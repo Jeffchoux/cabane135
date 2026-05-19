@@ -15,12 +15,15 @@ if (process.env.NODE_ENV === "production" && !process.env.AUTH_SECRET) {
   throw new Error("AUTH_SECRET is required in production");
 }
 
+/**
+ * Comparaison de chaînes constant-time pour éviter le timing attack sur
+ * email/password admin. Pad à la taille max si longueurs différentes pour
+ * ne pas leaker la longueur du secret via le timing.
+ */
 function safeStringEquals(a: string, b: string): boolean {
   const aBuf = Buffer.from(a);
   const bBuf = Buffer.from(b);
   if (aBuf.length !== bBuf.length) {
-    // timingSafeEqual exige la même longueur — on compare un buffer de taille max
-    // pour ne pas leaker la longueur du secret par le temps
     const max = Math.max(aBuf.length, bBuf.length);
     const padA = Buffer.alloc(max);
     const padB = Buffer.alloc(max);

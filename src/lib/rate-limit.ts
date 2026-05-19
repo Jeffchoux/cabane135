@@ -57,6 +57,11 @@ function memLimit(ip: string, max: number, windowMs: number) {
   return { ok: true, remaining: max - entry.count };
 }
 
+/**
+ * Valide qu'une string ressemble à une IP (v4 ou v6) avant de la passer
+ * comme clé KV. Max 45 chars (longueur max IPv6 textuel) + charset restreint
+ * pour éviter pollution KV / injection de clés arbitraires.
+ */
 export function isValidIp(ip: string): boolean {
   if (!ip || ip.length > 45) return false;
   return /^[0-9a-f:.]+$/i.test(ip);
@@ -77,6 +82,7 @@ async function applyLimiter(
   return memLimit(safeIp, fallback.max, fallback.windowMs);
 }
 
+/** Réservation publique : 5 / heure / IP. */
 export async function checkReservationLimit(ip: string): Promise<Result> {
   return applyLimiter(reservationLimiter, ip, {
     max: 5,
@@ -84,6 +90,7 @@ export async function checkReservationLimit(ip: string): Promise<Result> {
   });
 }
 
+/** Login admin : 10 / 15 min / IP (anti-brute-force). */
 export async function checkAuthLimit(ip: string): Promise<Result> {
   return applyLimiter(authLimiter, ip, {
     max: 10,
@@ -91,6 +98,7 @@ export async function checkAuthLimit(ip: string): Promise<Result> {
   });
 }
 
+/** Upload média admin : 30 / heure / IP (défense en profondeur). */
 export async function checkUploadLimit(ip: string): Promise<Result> {
   return applyLimiter(uploadLimiter, ip, {
     max: 30,
