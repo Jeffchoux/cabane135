@@ -38,7 +38,7 @@ test.describe("Smoke — pages publiques", () => {
   test("robots.txt servi", async ({ request }) => {
     const res = await request.get("/robots.txt");
     expect(res.status()).toBe(200);
-    expect(await res.text()).toContain("User-agent");
+    expect((await res.text()).toLowerCase()).toContain("user-agent");
   });
 
   test("sitemap.xml servi", async ({ request }) => {
