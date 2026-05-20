@@ -21,15 +21,59 @@ export function MenuImageEditor({ initial, onSaved }: Props) {
   const [error, setError] = useState<string | null>(null);
   const inputs = useRef<Record<number, HTMLInputElement | null>>({});
 
+  function extensionFromFile(file: File): string {
+    const fromName = file.name.split(".").pop()?.toLowerCase();
+    if (fromName && fromName.length <= 5) return fromName;
+    const mime = file.type.split("/").pop()?.toLowerCase();
+    return mime ?? "bin";
+  }
+
   async function handleFile(slot: number, file: File) {
     if (!file) return;
     setError(null);
     setBusy(slot);
     try {
-      const blob = await upload(`menu/menu${slot}-${Date.now()}.jpg`, file, {
-        access: "public",
-        handleUploadUrl: "/api/upload",
-      });
+      let uploadFile: File = file;
+      const ext = extensionFromFile(file);
+
+      // HEIC/HEIF (photos iPhone par défaut) : conversion en JPEG côté client
+      // car next/image ne sait pas afficher HEIC.
+      if (
+        /^image\/heic|^image\/heif/i.test(file.type) ||
+        /\.(heic|heif)$/i.test(file.name)
+      ) {
+        try {
+          const { default: heic2any } = await import("heic2any");
+          const blobOut = await heic2any({
+            blob: file,
+            toType: "image/jpeg",
+            quality: 0.9,
+          });
+          const out = Array.isArray(blobOut) ? blobOut[0] : blobOut;
+          uploadFile = new File(
+            [out],
+            file.name.replace(/\.hei[cf]$/i, ".jpg"),
+            { type: "image/jpeg" }
+          );
+        } catch (convErr) {
+          console.error("[menu-upload] HEIC conversion failed", convErr);
+          throw new Error(
+            "Conversion HEIC échouée. Réessayez avec un JPEG ou PNG."
+          );
+        }
+      }
+
+      const finalExt =
+        uploadFile.type === "image/jpeg" ? "jpg" : extensionFromFile(uploadFile);
+
+      const blob = await upload(
+        `menu/menu${slot}-${Date.now()}.${finalExt}`,
+        uploadFile,
+        {
+          access: "public",
+          handleUploadUrl: "/api/upload",
+        }
+      );
 
       const res = await fetch("/api/menu", {
         method: "PATCH",
@@ -55,7 +99,7 @@ export function MenuImageEditor({ initial, onSaved }: Props) {
       console.error("[menu-upload]", e);
       setError(
         e instanceof Error
-          ? e.message
+          ? `${e.message}`
           : "Upload échoué — vérifiez le format et la taille."
       );
     } finally {
@@ -105,7 +149,7 @@ export function MenuImageEditor({ initial, onSaved }: Props) {
                 inputs.current[img.slot] = el;
               }}
               type="file"
-              accept="image/jpeg,image/png,image/webp,image/avif"
+              accept="image/*"
               className="hidden"
               onChange={(e) => {
                 const file = e.target.files?.[0];

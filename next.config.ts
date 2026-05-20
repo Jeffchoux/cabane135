@@ -10,8 +10,8 @@ const csp = [
   "font-src 'self' https://fonts.gstatic.com data:",
   // Images: self + Vercel Blob + legacy media + Google Maps tiles + data URIs
   "img-src 'self' data: blob: https://media.cabane135.fr https://*.public.blob.vercel-storage.com https://maps.gstatic.com https://maps.googleapis.com https://www.google.com",
-  // Connect: self + Vercel analytics endpoint
-  "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com",
+  // Connect: self + Vercel analytics + Vercel Blob storage (upload PUT direct)
+  "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.public.blob.vercel-storage.com https://blob.vercel-storage.com",
   // Frames: Google Maps embed
   "frame-src 'self' https://www.google.com https://maps.google.com",
   // Workers
