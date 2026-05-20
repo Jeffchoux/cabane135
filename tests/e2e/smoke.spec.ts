@@ -25,7 +25,7 @@ test.describe("Smoke — pages publiques", () => {
 
   test("admin login affiche le formulaire", async ({ page }) => {
     await page.goto("/admin/login");
-    await expect(page.locator('input[type="email"]')).toBeVisible();
+    await expect(page.locator('input[name="username"]')).toBeVisible();
     await expect(page.locator('input[type="password"]')).toBeVisible();
   });
 

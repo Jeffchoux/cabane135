@@ -34,10 +34,7 @@ export function MenuImageEditor({ initial, onSaved }: Props) {
     setBusy(slot);
     try {
       let uploadFile: File = file;
-      const ext = extensionFromFile(file);
 
-      // HEIC/HEIF (photos iPhone par défaut) : conversion en JPEG côté client
-      // car next/image ne sait pas afficher HEIC.
       if (
         /^image\/heic|^image\/heif/i.test(file.type) ||
         /\.(heic|heif)$/i.test(file.name)
@@ -66,8 +63,10 @@ export function MenuImageEditor({ initial, onSaved }: Props) {
       const finalExt =
         uploadFile.type === "image/jpeg" ? "jpg" : extensionFromFile(uploadFile);
 
+      // Vercel Blob ajoute déjà un suffixe aléatoire (addRandomSuffix: true)
+      // côté serveur, donc inutile de générer un timestamp ici.
       const blob = await upload(
-        `menu/menu${slot}-${Date.now()}.${finalExt}`,
+        `menu/menu${slot}.${finalExt}`,
         uploadFile,
         {
           access: "public",
