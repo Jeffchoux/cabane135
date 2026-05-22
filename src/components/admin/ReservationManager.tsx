@@ -50,6 +50,22 @@ export function ReservationManager({ initial }: { initial: R[] }) {
     setBusy(null);
   }
 
+  async function resendNotif(id: string) {
+    setBusy(id);
+    const res = await fetch(`/api/reservations/resend-notification`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+    setBusy(null);
+    if (res.ok) {
+      alert("Notification renvoyée aux 3 destinataires admin.");
+    } else {
+      const data = await res.json().catch(() => ({}));
+      alert(`Échec de l'envoi : ${data.error ?? res.statusText}`);
+    }
+  }
+
   async function remove(id: string, name: string) {
     if (
       !confirm(
@@ -149,6 +165,15 @@ export function ReservationManager({ initial }: { initial: R[] }) {
                       Annuler
                     </button>
                   )}
+                  <button
+                    onClick={() => resendNotif(r.id)}
+                    disabled={busy === r.id}
+                    aria-label={`Renvoyer la notification pour ${r.name}`}
+                    title="Renvoyer la notification email aux admins"
+                    className="text-xs px-2 py-1 border border-white/15 text-white/50 hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors"
+                  >
+                    ✉
+                  </button>
                   <button
                     onClick={() => remove(r.id, r.name)}
                     disabled={busy === r.id}
