@@ -36,7 +36,11 @@ describe("sendNotification()", () => {
     await sendNotification(payload);
     expect(sendMock).toHaveBeenCalledTimes(1);
     const arg = sendMock.mock.calls[0][0];
-    expect(arg.to).toBe("admin@cabane135.fr");
+    expect(arg.to).toEqual([
+      "admin@cabane135.fr",
+      "huitres.lebon@orange.fr",
+      "comptahuitreslebon@orange.fr",
+    ]);
     expect(arg.subject).toContain("Nicolas Lebon");
     expect(arg.html).toContain("Nicolas Lebon");
     expect(arg.text).toContain("Nicolas Lebon");

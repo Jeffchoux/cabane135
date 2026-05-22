@@ -3,7 +3,15 @@ import { Resend } from "resend";
 const apiKey = process.env.RESEND_API_KEY;
 const from =
   process.env.RESEND_FROM ?? "Huîtres Lebon Cabane 135 <contact@cabane135.fr>";
-const adminEmail = process.env.ADMIN_EMAIL ?? "contact@cabane135.fr";
+const adminEmails = Array.from(
+  new Set(
+    [
+      process.env.ADMIN_EMAIL ?? "contact@cabane135.fr",
+      "huitres.lebon@orange.fr",
+      "comptahuitreslebon@orange.fr",
+    ].map((s) => s.trim().toLowerCase()),
+  ),
+);
 const replyTo = "contact@cabane135.fr";
 
 const fromFormatted = from.includes("<")
@@ -119,7 +127,7 @@ export async function sendNotification(r: ReservationPayload) {
 
   await client().emails.send({
     from: fromFormatted,
-    to: adminEmail,
+    to: adminEmails,
     replyTo,
     subject,
     text,
